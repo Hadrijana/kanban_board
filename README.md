@@ -1,2 +1,2 @@
 # kanban_board
-simple kanan board from ardentcode intership
+simple kanban board from ardentcode intership
