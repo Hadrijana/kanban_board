@@ -1,7 +1,7 @@
 import Card from "./Card.js";
 class AddCardForm {
-  constructor(cnt) {
-    this.counter = cnt;
+  constructor() {
+    this.counter = Date.getTime();
     this.addTaskBtn = document.getElementById("btn-add-task");
     this.addTaskBtn.addEventListener("click", this.addTask);
   }

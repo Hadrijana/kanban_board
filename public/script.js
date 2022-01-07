@@ -1,5 +1,6 @@
 import Card from "./Card.js";
 import AddCardForm from "./AddCardForm.js";
+import AddCardButton from "./AddCardButton.js";
 import DroppableColumn from "./DroppableColumn.js";
 let counter = 0;
 
@@ -15,17 +16,20 @@ const loadData = () => {
 
 loadData();
 
-new AddCardForm(counter);
+//new AddCardForm(counter);
 
+
+new AddCardButton()
 new DroppableColumn()
 
 
-if(task.length>0){
-  task.forEach((element) => {
-    const task = new Card(element);
-    task.renderCard();
-  });
-}
+
+task.forEach((element) => {
+  const task = new Card(element);
+  task.renderCard();
+});
+
+
   
 
 
