@@ -1,0 +1,52 @@
+* {
+  background-color: #696667ff;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  min-height: 100vh;
+}
+.column * {
+  
+  margin: 7px;
+}
+
+
+.column {
+  border-right: 1px solid black;
+  min-height: 100vh;
+}
+
+.column-name {
+  text-align: center;
+  background-color: #696667ff;
+}
+.container{
+  background-color: #696667ff;
+  min-height: 100vh;
+}
+
+.task {
+  all: initial;
+  background-color: #964f4cff;
+  margin: 7px;
+  border: 1px solid black;
+  width: 200px;
+  display: inline-grid;
+}
+.task * {
+  background-color: #964f4cff;
+}
+
+.drag-over {
+  border: dashed 3px red;
+}
+
+.hide {
+  display: none;
+}
+
+
+/* #567572FF */

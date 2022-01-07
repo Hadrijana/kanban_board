@@ -1,0 +1,15 @@
+<!-- <script type="module" src="./app.js" ></script> -->
+
+04.01
+debugger
+obiektowość
+zbyt długie funkcje, za dużo parametrów
+rozdzielenie funkcjonalności 
+html5 nausz się głupcze,
+
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {}
