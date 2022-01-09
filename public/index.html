@@ -2,33 +2,39 @@
 <html>
   <head>
     <title>Kanban board</title>
-    
+
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="stylesheet.css" />
-
-    <script src="https://unpkg.com/vanilla-picker@2"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <!-- <meta name="viewport" content="width=device-width"> -->
-
 
     <!-- <script type="module" src="./app.js" ></script> -->
   </head>
   <body>
     <div class="main">
-      <div
-        class="column"
-        id="to-do"
-      >
-        <h2 class="column-name">To do</h2>
-        <button id="btn-add-task">Add Task</button>
+      <div class="column" id="to-do">
+        <div class="column-name" >
+          <h2 >To do</h2>
+          <button class="button" id="btn-add-task"> 
+            <i class="fas fa-plus"></i>
+            Add Task
+          </button>
+        </div>
         <div class="container" name="container" id="to-do-list"></div>
       </div>
       <div class="column" id="in-progress">
-        <h2 class="column-name">In progress</h2>
+        <div class="column-name">
+          <h2 >In progress</h2>
+        </div>
+        
         <div class="container" name="container" id="in-progress-list"></div>
       </div>
       <div class="column" id="done">
-        <h2 class="column-name">Done</h2>
-        <div class="container"name="container" id="done-list"></div>
+        <div class="column-name">
+          <h2 >Done</h2>
+        </div>
+        
+        <div class="container" name="container" id="done-list"></div>
       </div>
     </div>
 

@@ -1,5 +1,5 @@
 * {
-  background-color: #696667ff;
+  background-color: rgb(54, 51, 52);
 }
 
 .main {
@@ -15,13 +15,16 @@
 
 
 .column {
-  border-right: 1px solid black;
+  
   min-height: 100vh;
 }
 
 .column-name {
-  text-align: center;
-  background-color: #696667ff;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: white;
+ 
 }
 .container{
   background-color: #696667ff;
@@ -32,7 +35,8 @@
   all: initial;
   background-color: #964f4cff;
   margin: 7px;
-  border: 1px solid black;
+  border: 2px solid white ;
+  /* border-radius: 1rem; */
   width: 200px;
   display: inline-grid;
 }
@@ -47,6 +51,33 @@
 .hide {
   display: none;
 }
+
+.button{
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  border: 2px solid white ;
+  
+  
+}
+
+[name=description]{
+  color: white;
+  border-top: 2px solid white  ;
+  min-height: 5rem;
+  padding-top: 1rem;
+  /* border-radius: 1rem; */
+}
+
+[name=title]{
+  font-weight: bold;
+}
+
+
+
 
 
 /* #567572FF */

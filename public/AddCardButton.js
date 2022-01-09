@@ -13,7 +13,7 @@ class AddCardButton {
             column: "to-do-list",
             color: "#964f4cff"
         })
-        
+        localStorage.setItem(task.id, JSON.stringify(task));
         task.renderCard()  
     };
 }

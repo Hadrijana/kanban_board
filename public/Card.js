@@ -1,4 +1,4 @@
-import Picker from "vanilla-picker";
+
 
 class Card {
   constructor(task) {
@@ -39,23 +39,16 @@ class Card {
     const parent = document.getElementById(this.column);
 
     const el = `<div class="task" id=${this.id} draggable="true"
-                  ondragend="this.onDragEnd" style="background-color:${
-                    this.color
-                  }"
+                  ondragend="this.onDragEnd" style="background-color:${this.color}"
                   ondrop="event.stopPropagation()" ondragover="event.stopPropagation()"> 
-                    <div id="${
-                      this.id
-                    }-title" contenteditable="true" ondrop="event.stopPropagation()" 
+                    <div name="title" id="${this.id}-title" contenteditable="true" ondrop="event.stopPropagation()" 
                     ondragover="event.stopPropagation()">${this.title}</div> 
-                    <div id="${this.id}-description" contenteditable="true">${this.description}</div> 
-                    <div id="${this.id}-colorpicker" ></div>             
-                    <button id="delete-btn-${+this.id}" >Delete</button>
+                    <div name="description" id="${this.id}-description" contenteditable="true">${this.description}</div>             
+                    <button class="button" id="delete-btn-${+this.id}" > <i class="fas fa-trash"></i> Trash</button>
                 </div>`;
 
     parent.appendChild(document.createRange().createContextualFragment(el));
-
-    const picker = new Picker(document.querySelector(`${this.id}-colorpicker`));
-
+    
     document
       .getElementById(this.id)
       .addEventListener("dragend", this.onDragEnd);
