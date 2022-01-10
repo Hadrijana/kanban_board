@@ -1,5 +1,6 @@
 * {
-  background-color: rgb(54, 51, 52);
+  background-color: #696667ff 
+  /* rgb(54, 51, 52); */
 }
 
 .main {
@@ -10,6 +11,7 @@
 }
 .column * {
   margin: 7px;
+  background-color: rgb(54, 51, 52);
   
 }
 
@@ -19,37 +21,85 @@
 }
 
 .column-name {
+  
   display: flex;
-  justify-content: space-between;
-  width: 100%;
   color: whitesmoke;
+  margin-bottom: 0px;
  
 }
 .container{
-  background-color: #696667ff;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgb(54, 51, 52);
   min-height: 100vh;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  align-content: flex-start;
+  margin-top: 0px;
+  border-top: 2px solid whitesmoke;
+
 }
 
-@media (max-width: 400px) {
-  .main {
-    flex-direction: row;
-  }
-}
+
 
 .task {
   all: initial;
   background-color: #964f4cff;
   margin: 7px;
-  border: 2px solid rgb(54, 51, 52); ;
+  border: 2px solid rgb(54, 51, 52); 
+  border-color: whitesmoke;
   /* border-radius: 1rem; */
   width: 30%;
-  display: inline-grid;
+  /* height: 15rem; */
+  display: flex;  
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  
 }
 .task * {
   background-color: #964f4cff;
+  display: flex;
+  width: 92%;
+  color: whitesmoke
+  
   /* color: rgb(54, 51, 52); */
 }
 
+@media (max-width: 1660px){
+  .task{
+    width: 43%;
+  }
+}
+
+@media (max-width: 1000px){
+  .container{
+    justify-content: space-around;
+  }
+  .task{
+    width: 80%;
+  }
+}
+
+
+@media (max-width: 800px) {
+  .main{
+    display: block;
+  }
+  .container{
+    justify-content: space-around;
+    flex-direction: row;
+  }
+  .task{
+    width: 30%;
+  }
+}
+@media (max-width: 600px) {
+  .task{
+    width: 43%;
+  }
+}
 
 .hide {
   display: none;
@@ -57,29 +107,40 @@
 
 .button{
   border: none;
-  /* color: rgb(54, 51, 52); */
-  /* text-align: center; */
   text-decoration: none;
-  display: inline-block;
   font-size: 12px;
-  border: 2px solid rgb(54, 51, 52); ;
+  width: fit-content;
+  align-self: flex-end;
   
   
 }
 
+
 [name=description]{
   
-  border-top: 2px solid rgb(54, 51, 52); ;
+  border-top: 2px solid rgb(54, 51, 52);
+  border-color: whitesmoke;
   min-height: 5rem;
   padding-top: 1rem;
+  white-space: break-spaces;
+  overflow-wrap: anywhere;
+  flex-direction: column;
  
 }
 
 [name=title]{
+  min-height: 1rem;
   font-weight: bold;
+  white-space: break-spaces;
+  overflow-wrap: anywhere;
+  flex-direction: column;
 }
+
+
 #btn-add-task{
   color:whitesmoke;
+  font-size: 18px;
+  align-self: flex-end;
 }
 
 
