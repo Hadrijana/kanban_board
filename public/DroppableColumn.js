@@ -31,7 +31,7 @@ class DroppableColumn{
 
     drop =(e)=> {
         e.preventDefault();
-        e.target.classList.remove('drag-over');
+        // e.target.classList.remove('drag-over');
         const id = e.dataTransfer.getData('text/plain');
         const draggable = document.getElementById(id);
 
