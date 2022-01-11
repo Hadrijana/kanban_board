@@ -35,16 +35,6 @@ class Card {
     localStorage.setItem(this.id, JSON.stringify(this));
   };
 
-  // setEndOfContenteditable =(contentEditableElement)=>
-  // {   
-    
-  //     const range = document.createRange();//Create a range (a range is a like the selection but invisible)
-  //     range.selectNodeContents(contentEditableElement);//Select the entire contents of the element with the range
-  //     range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
-  //     const selection = window.getSelection();//get the selection object (allows you to change selection)
-  //     selection.removeAllRanges();//remove any selections already made
-  //     selection.addRange(range);//make the range you have just created the visible selection
-  // }
 
   renderCard = () => {
     const parent = document.getElementById(this.column);
@@ -58,7 +48,10 @@ class Card {
                     <button class="button" id="delete-btn-${+this.id}" > <i class="fas fa-trash"></i></button>
                 </div>`;
 
-    parent.appendChild(document.createRange().createContextualFragment(el));
+    const range = document.createRange()
+    range.selectNode(parent)
+    const documentFragment = range.createContextualFragment(el).children[0]
+    parent.appendChild(documentFragment);
 
     
     document
@@ -77,11 +70,10 @@ class Card {
       .getElementById(`${this.id}-title`)
       .addEventListener("input", this.onEdit);
 
-    // this.setEndOfContenteditable(document.getElementById(`${this.id}-title`))
     document
       .getElementById(`${this.id}-description`)
       .addEventListener("focusout", this.onEdit);
-    // this.setEndOfContenteditable(document.getElementById(`${this.id}-description`))
+    
     
   };
 }

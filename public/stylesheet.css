@@ -47,7 +47,6 @@
 }
 
 .task {
-  all: initial;
   background-color: #964f4cff;
   margin: 7px;
   border: 2px solid rgb(54, 51, 52); 
