@@ -1,8 +1,8 @@
 import Card from "./Card.js";
 
 class AddCardButton {
-    constructor() {
-        this.addTaskBtn = document.getElementById("btn-add-task");
+    constructor(btn) {
+        this.addTaskBtn = btn;
         this.addTaskBtn.addEventListener("click", this.addTask);
     }
     addTask = () => {        
@@ -10,7 +10,7 @@ class AddCardButton {
             title: "",
             description: "",
             id: Date.now(),
-            column: "to-do-list",
+            column: `${this.addTaskBtn.parentNode.parentNode.id}-list`,
             color: "#964f4cff"
         })
         localStorage.setItem(task.id, JSON.stringify(task));

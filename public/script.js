@@ -1,7 +1,7 @@
 import Card from "./Card.js";
 import AddCardForm from "./AddCardForm.js";
 import AddCardButton from "./AddCardButton.js";
-import DroppableColumn from "./DroppableColumn.js";
+import DroppableColumns from "./DroppableColumns.js";
 let counter = 0;
 
 let task = [];
@@ -18,9 +18,11 @@ loadData();
 
 //new AddCardForm(counter);
 
+document.querySelectorAll('[name="add"]').forEach(btn=>{
+  new AddCardButton(btn)
+})
 
-new AddCardButton()
-new DroppableColumn()
+new DroppableColumns()
 
 
 

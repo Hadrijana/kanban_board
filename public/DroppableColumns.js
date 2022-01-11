@@ -1,4 +1,4 @@
-class DroppableColumn{
+class DroppableColumns{
     constructor(){
         this.boxes = document.querySelectorAll('[name="container"]')
         this.addListeners();
@@ -49,4 +49,4 @@ class DroppableColumn{
     
 }
 
-export default DroppableColumn;
+export default DroppableColumns;

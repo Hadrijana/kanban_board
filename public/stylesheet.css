@@ -21,12 +21,18 @@
 }
 
 .column-name {
-  
   display: flex;
   color: whitesmoke;
   margin-bottom: 0px;
- 
+  justify-content: center;
+  align-items: center;
 }
+
+.column-name *{
+  display: flex;
+}
+
+
 .container{
   display: flex;
   flex-wrap: wrap;
@@ -39,8 +45,6 @@
   border-top: 2px solid whitesmoke;
 
 }
-
-
 
 .task {
   all: initial;
@@ -112,8 +116,19 @@
   width: fit-content;
   align-self: flex-end;
   
+}
+
+[name=add]{
+  display: flex;
+  color:whitesmoke;
+  font-size: 18px;
+  /* flex-direction: column; */
+  /* align-self:flex-end; */
+  /* text-align: right */
+  
   
 }
+
 
 
 [name=description]{
@@ -137,11 +152,6 @@
 }
 
 
-#btn-add-task{
-  color:whitesmoke;
-  font-size: 18px;
-  align-self: flex-end;
-}
 
 
 
