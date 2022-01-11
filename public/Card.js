@@ -45,6 +45,7 @@ class Card {
                     <div name="title" id="${this.id}-title" contenteditable="true" ondrop="event.stopPropagation()" 
                     ondragover="event.stopPropagation()"  >${this.title} </div> 
                     <div name="description" id="${this.id}-description" contenteditable="true">${this.description}</div>             
+                    <div id="picker"></div>
                     <button class="button" id="delete-btn-${+this.id}" > <i class="fas fa-trash"></i></button>
                 </div>`;
 
@@ -53,6 +54,10 @@ class Card {
     const documentFragment = range.createContextualFragment(el).children[0]
     parent.appendChild(documentFragment);
 
+    // let color = document.createElement("div");
+    // color.setAttribute("id", "picker")
+    // let picker = new Picker(color)
+    // color.appendChild(picker)
     
     document
       .getElementById(this.id)

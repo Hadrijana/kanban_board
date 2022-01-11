@@ -6,17 +6,21 @@ let counter = 0;
 
 let task = [];
 
-const loadData = () => {
-  let keys = Object.keys(localStorage);
-  task = keys.map((key) => {
-    counter++;
-    return JSON.parse( localStorage.getItem(key));
-  });
-};
+// const loadData = () => {
+//   let keys = Object.keys(localStorage);
+//   task = keys.map((key) => {
+//     counter++;
+//     return JSON.parse( localStorage.getItem(key));
+//   });
+// };
 
-loadData();
+// loadData();
 
-//new AddCardForm(counter);
+await fetch('http://localhost:8000/tasks').then(
+  res=>{
+    console.log(res.json())
+  }
+)
 
 document.querySelectorAll('[name="add"]').forEach(btn=>{
   new AddCardButton(btn)
