@@ -7,11 +7,9 @@ class Service {
   }
 
   static deleteTask = async (id) => {
-    return fetch('http://localhost:8000/tasks/' + id, {
+    fetch('http://localhost:8000/delete/' + id, {
       method: 'DELETE',
     })
-      .then((res) => res.json()) // or res.json()
-      .then((res) => console.log(res))
   }
 
   static addTask = async (task) => {
@@ -19,11 +17,7 @@ class Service {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(task),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res)
-      })
+    }).then((res) => res.json())
   }
 }
 export default Service

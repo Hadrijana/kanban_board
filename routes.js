@@ -31,7 +31,7 @@ router.post('/newTask', (req, res) => {
       console.log('Successfully wrote file')
     }
   })
-  res.json(tasks)
+  res.json({ msg: 'new task added' })
 })
 
 router.delete('/delete/:id', (req, res) => {
@@ -39,8 +39,15 @@ router.delete('/delete/:id', (req, res) => {
 
   if (found) {
     delete tasks[req.params.id]
-    // console.log(tasks)
-    //res.json({ msg: 'item deleted' })
+    fs.writeFile('./Tasks.json', JSON.stringify(tasks, null, 2), (err) => {
+      if (err) {
+        console.log('Error writing file', err)
+      } else {
+        console.log('Successfully wrote file from delete')
+      }
+    })
+
+    res.json({ msg: 'item deleted' })
   } else {
     res.status(400).json({ msg: 'task not found' })
   }
