@@ -20,11 +20,11 @@ class Service {
     }).then((res) => res.json())
   }
 
-  static editTask = async (id, title) => {
+  static editTask = async (id, prop) => {
     fetch('http://localhost:8000/edit/' + id, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(title),
+      body: JSON.stringify(prop),
     }).then((res) => res.json())
   }
 }

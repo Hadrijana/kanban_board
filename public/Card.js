@@ -27,14 +27,11 @@ class Card {
   }
 
   onEdit = (e) => {
-    // if (e.target.id === `${this.id}-title`) {
-    //   this.title = e.target.innerText
-    // } else if (e.target.id === `${this.id}-description`) {
-    //   this.description = e.target.innerText
-    // }
-
-    //localStorage.setItem(this.id, JSON.stringify(this))
-    Service.editTask(this.id, { title: e.target.innerText })
+    if (e.target.id === `${this.id}-title`) {
+      Service.editTask(this.id, { title: e.target.innerText })
+    } else if (e.target.id === `${this.id}-description`) {
+      Service.editTask(this.id, { description: e.target.innerText })
+    }
   }
 
   renderCard = () => {
