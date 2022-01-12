@@ -42,6 +42,11 @@ router.patch('/edit/:id', (req, res) => {
 
   if (found) {
     tasks[req.params.id].title = req.body.title
+      ? req.body.title
+      : tasks[req.params.id].title
+    tasks[req.params.id].description = req.body.description
+      ? req.body.description
+      : tasks[req.params.id].description
     writeToFile()
     res.json(tasks[req.params.id])
   } else {
