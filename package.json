@@ -14,5 +14,14 @@
     "express": "^4.17.2",
     "nodemon": "^2.0.15",
     "vanilla-picker": "^2.12.1"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true,
+    "formatOnSave": true
+
+
   }
 }
