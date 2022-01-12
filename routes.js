@@ -33,6 +33,17 @@ router.post('/newTask', (req, res) => {
   })
   res.json({ msg: 'new task added' })
 })
+router.patch('/edit/:id', (req, res) => {
+  const found = tasks[req.params.id]
+
+  if (found) {
+    tasks[req.params.id].title = req.body.title
+    res.json(tasks[req.params.id])
+    console.log(tasks[req.params.id])
+  } else {
+    res.status(400).json({ msg: `No member with the id of ${req.params.id}` })
+  }
+})
 
 router.delete('/delete/:id', (req, res) => {
   const found = tasks[req.params.id]

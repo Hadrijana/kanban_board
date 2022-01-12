@@ -27,13 +27,14 @@ class Card {
   }
 
   onEdit = (e) => {
-    if (e.target.id === `${this.id}-title`) {
-      this.title = e.target.innerText
-    } else if (e.target.id === `${this.id}-description`) {
-      this.description = e.target.innerText
-    }
+    // if (e.target.id === `${this.id}-title`) {
+    //   this.title = e.target.innerText
+    // } else if (e.target.id === `${this.id}-description`) {
+    //   this.description = e.target.innerText
+    // }
 
-    localStorage.setItem(this.id, JSON.stringify(this))
+    //localStorage.setItem(this.id, JSON.stringify(this))
+    Service.editTask(this.id, { title: e.target.innerText })
   }
 
   renderCard = () => {
@@ -80,7 +81,7 @@ class Card {
 
     document
       .getElementById(`${this.id}-title`)
-      .addEventListener('input', this.onEdit)
+      .addEventListener('focusout', this.onEdit)
 
     document
       .getElementById(`${this.id}-description`)

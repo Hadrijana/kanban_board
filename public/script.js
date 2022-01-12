@@ -9,7 +9,7 @@ document.querySelectorAll('[name="add"]').forEach((btn) => {
 
 new DroppableColumns()
 
-Service.getAll().then((tasks) => {
+Service.getAllTasks().then((tasks) => {
   for (const element in tasks) {
     const task = new Card(tasks[element])
     task.renderCard()

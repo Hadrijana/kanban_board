@@ -1,5 +1,5 @@
 class Service {
-  static getAll = async () => {
+  static getAllTasks = async () => {
     let allTasks = await fetch('http://localhost:8000/tasks').then((res) => {
       return res.json()
     })
@@ -17,6 +17,14 @@ class Service {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(task),
+    }).then((res) => res.json())
+  }
+
+  static editTask = async (id, title) => {
+    fetch('http://localhost:8000/edit/' + id, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(title),
     }).then((res) => res.json())
   }
 }
