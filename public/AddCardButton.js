@@ -8,8 +8,8 @@ class AddCardButton {
   }
   addTask = () => {
     const task = new Card({
-      title: 'title 5',
-      description: ' dsodkoskdo',
+      title: '',
+      description: '',
       id: Date.now(),
       column: `${this.addTaskBtn.parentNode.parentNode.id}-list`,
       color: '#964f4cff',

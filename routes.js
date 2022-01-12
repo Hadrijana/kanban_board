@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const tasks = require('./Tasks')
+const tasks = require('./Tasks.json')
+const fs = require('fs')
 
 // Gets All Members
 router.get('/', (req, res) => {
@@ -10,10 +11,10 @@ router.get('/', (req, res) => {
 router.get('/tasks', (req, res) => res.json(tasks))
 
 router.get('/tasks/:id', (req, res) => {
-  const found = tasks.some((task) => task.id === parseInt(req.params.id))
+  const found = tasks[req.params.id]
 
   if (found) {
-    res.json(tasks.filter((task) => task.id === parseInt(req.params.id)))
+    res.json(tasks[req.params.id])
   } else {
     res.status(400).json({ msg: 'task not found' })
   }
@@ -21,21 +22,28 @@ router.get('/tasks/:id', (req, res) => {
 
 router.post('/newTask', (req, res) => {
   const newTask = req.body
-  tasks.push(newTask)
+  const id = req.body.id
+  tasks[id] = newTask
+  fs.writeFile('./Tasks.json', JSON.stringify(tasks, null, 2), (err) => {
+    if (err) {
+      console.log('Error writing file', err)
+    } else {
+      console.log('Successfully wrote file')
+    }
+  })
   res.json(tasks)
 })
 
-// router.delete('tasks/:id', (req, res) => {
-//   const found = tasks.some((task) => task.id === parseInt(req.params.id))
+router.delete('/delete/:id', (req, res) => {
+  const found = tasks[req.params.id]
 
-//   if (found) {
-//     res.json({
-//       msg: 'Member deleted',
-//       members: tasks.filter((member) => !idFilter(req)(member)),
-//     })
-//   } else {
-//     res.status(400).json({ msg: `No member with the id of ${req.params.id}` })
-//   }
-// })
+  if (found) {
+    delete tasks[req.params.id]
+    // console.log(tasks)
+    //res.json({ msg: 'item deleted' })
+  } else {
+    res.status(400).json({ msg: 'task not found' })
+  }
+})
 
 module.exports = router

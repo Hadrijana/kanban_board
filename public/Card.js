@@ -22,8 +22,8 @@ class Card {
 
   onDelete = () => {
     // localStorage.removeItem(this.id);
-    // document.getElementById(this.id).remove();
     Service.deleteTask(this.id)
+    document.getElementById(this.id).remove()
   }
 
   onEdit = (e) => {
