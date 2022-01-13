@@ -1,5 +1,5 @@
 * {
-  background-color: #696667ff 
+  background-color: #696667ff;
   /* rgb(54, 51, 52); */
 }
 
@@ -7,12 +7,10 @@
   display: flex;
   flex-direction: row;
   min-height: 100%;
-  
 }
 .column * {
   margin: 7px;
   background-color: rgb(54, 51, 52);
-  
 }
 
 .column {
@@ -28,12 +26,11 @@
   align-items: center;
 }
 
-.column-name *{
+.column-name * {
   display: flex;
 }
 
-
-.container{
+.container {
   display: flex;
   flex-wrap: wrap;
   background-color: rgb(54, 51, 52);
@@ -43,63 +40,59 @@
   align-content: flex-start;
   margin-top: 0px;
   border-top: 2px solid whitesmoke;
-
 }
 
 .task {
-  background-color: #964f4cff;
+  /* background-color: #964f4cff; */
   margin: 7px;
-  border: 2px solid rgb(54, 51, 52); 
+  border: 2px solid rgb(54, 51, 52);
   border-color: whitesmoke;
   /* border-radius: 1rem; */
   width: 30%;
   /* height: 15rem; */
-  display: flex;  
+  display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
-
-  
 }
 .task * {
-  background-color: #964f4cff;
+  /* background-color: #964f4cff; */
   display: flex;
   width: 92%;
-  color: whitesmoke
-  
+  color: whitesmoke;
+
   /* color: rgb(54, 51, 52); */
 }
 
-@media (max-width: 1660px){
-  .task{
+@media (max-width: 1660px) {
+  .task {
     width: 43%;
   }
 }
 
-@media (max-width: 1000px){
-  .container{
+@media (max-width: 1000px) {
+  .container {
     justify-content: space-around;
   }
-  .task{
+  .task {
     width: 80%;
   }
 }
 
-
 @media (max-width: 800px) {
-  .main{
+  .main {
     display: block;
   }
-  .container{
+  .container {
     justify-content: space-around;
     flex-direction: row;
   }
-  .task{
+  .task {
     width: 30%;
   }
 }
 @media (max-width: 600px) {
-  .task{
+  .task {
     width: 43%;
   }
 }
@@ -108,30 +101,24 @@
   display: none;
 }
 
-.button{
+.button {
   border: none;
   text-decoration: none;
   font-size: 12px;
   width: fit-content;
   align-self: flex-end;
-  
 }
 
-[name=add]{
+[name='add'] {
   display: flex;
-  color:whitesmoke;
+  color: whitesmoke;
   font-size: 18px;
   /* flex-direction: column; */
   /* align-self:flex-end; */
   /* text-align: right */
-  
-  
 }
 
-
-
-[name=description]{
-  
+[name='description'] {
   border-top: 2px solid rgb(54, 51, 52);
   border-color: whitesmoke;
   min-height: 5rem;
@@ -139,21 +126,14 @@
   white-space: break-spaces;
   overflow-wrap: anywhere;
   flex-direction: column;
- 
 }
 
-[name=title]{
+[name='title'] {
   min-height: 1rem;
   font-weight: bold;
   white-space: break-spaces;
   overflow-wrap: anywhere;
   flex-direction: column;
 }
-
-
-
-
-
-
 
 /* #567572FF */
