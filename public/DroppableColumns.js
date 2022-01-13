@@ -1,52 +1,49 @@
-class DroppableColumns{
-    constructor(){
-        this.boxes = document.querySelectorAll('[name="container"]')
-        this.addListeners();
-    }
-    
-    addListeners = ()=>{
-        this.boxes.forEach(box => {
-            box.addEventListener('dragenter', this.dragEnter)
-            box.addEventListener('dragover', this.dragOver);
-            box.addEventListener('dragleave', this.dragLeave);
-            box.addEventListener('drop', this.drop);
-        });
-     }
-   
+import Service from './Service.js'
+class DroppableColumns {
+  constructor() {
+    this.boxes = document.querySelectorAll('[name="container"]')
+    this.addListeners()
+  }
 
-    dragEnter = (e) => {
-        e.preventDefault();
-        e.target.classList.add('drag-over');
-    }
+  addListeners = () => {
+    this.boxes.forEach((box) => {
+      box.addEventListener('dragenter', this.dragEnter)
+      box.addEventListener('dragover', this.dragOver)
+      box.addEventListener('dragleave', this.dragLeave)
+      box.addEventListener('drop', this.drop)
+    })
+  }
 
-    dragOver = (e) => {
-        e.preventDefault();
-        e.dataTransfer.dropEffect = "copy"
-        e.target.classList.add('drag-over');
-    }
+  dragEnter = (e) => {
+    e.preventDefault()
+    e.target.classList.add('drag-over')
+  }
 
-    dragLeave=(e)=> {
-        e.target.classList.remove('drag-over');
-    }
+  dragOver = (e) => {
+    e.preventDefault()
+    e.dataTransfer.dropEffect = 'copy'
+    e.target.classList.add('drag-over')
+  }
 
-    drop =(e)=> {
-        e.preventDefault();
-        // e.target.classList.remove('drag-over');
-        const id = e.dataTransfer.getData('text/plain');
-        const draggable = document.getElementById(id);
+  dragLeave = (e) => {
+    e.target.classList.remove('drag-over')
+  }
 
-        e.target.appendChild(draggable);
-        
-        draggable.classList.remove('hide');
+  drop = (e) => {
+    e.preventDefault()
+    // e.target.classList.remove('drag-over');
+    const id = e.dataTransfer.getData('text/plain')
+    const draggable = document.getElementById(id)
 
-        let card = JSON.parse(localStorage[id])
-        card.column = e.target.id;
-        localStorage[id]=JSON.stringify(card)
-        
+    e.target.appendChild(draggable)
 
-    }
+    draggable.classList.remove('hide')
 
-    
+    // let card = JSON.parse(localStorage[id])
+    // card.column = e.target.id;
+    // localStorage[id]=JSON.stringify(card)
+    Service.moveTaskBetweenColumns(id, { column: e.target.id })
+  }
 }
 
-export default DroppableColumns;
+export default DroppableColumns

@@ -17,15 +17,44 @@ class Service {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(task),
-    }).then((res) => res.json())
+    }).then(async (res) => {
+      try {
+        const data = await res.json()
+      } catch (error) {
+        console.log('Error happened here!')
+        console.error(error)
+      }
+    })
   }
 
   static editTask = async (id, prop) => {
     fetch('http://localhost:8000/edit/' + id, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
+      body: prop,
+    }).then(async (res) => {
+      try {
+        const data = await res.json()
+      } catch (error) {
+        console.log('Error happened here!')
+        console.error(error)
+      }
+    })
+  }
+
+  static moveTaskBetweenColumns = async (id, prop) => {
+    fetch('http://localhost:8000/drop/' + id, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(prop),
-    }).then((res) => res.json())
+    }).then(async (res) => {
+      try {
+        const data = await res.json()
+      } catch (error) {
+        console.log('Error happened here!')
+        console.error(error)
+      }
+    })
   }
 }
 export default Service

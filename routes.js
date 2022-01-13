@@ -37,16 +37,28 @@ router.post('/newTask', (req, res) => {
   writeToFile()
   res.json({ msg: 'new task added' })
 })
+
 router.patch('/edit/:id', (req, res) => {
   const found = tasks[req.params.id]
 
   if (found) {
-    tasks[req.params.id].title = req.body.title
-      ? req.body.title
-      : tasks[req.params.id].title
-    tasks[req.params.id].description = req.body.description
-      ? req.body.description
-      : tasks[req.params.id].description
+    const updatedTask = req.body
+    tasks[req.params.id] = updatedTask
+    writeToFile()
+    res.json(req.body)
+  } else {
+    res.status(400).json({ msg: `No member with the id of ${req.params.id}` })
+  }
+})
+
+router.patch('/drop/:id', (req, res) => {
+  const found = tasks[req.params.id]
+
+  if (found) {
+    tasks[req.params.id].column = req.body.column
+      ? req.body.column
+      : tasks[req.params.id].column
+
     writeToFile()
     res.json(tasks[req.params.id])
   } else {
