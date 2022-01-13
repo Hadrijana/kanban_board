@@ -3,7 +3,7 @@
     "id": "1",
     "title": "task 1",
     "description": "some random taskfdsdfsd",
-    "column": "to-do-list",
+    "column": "done-list",
     "category": {
       "name": "basic",
       "color": "#3253a8"
@@ -13,7 +13,7 @@
     "id": 1642011736570,
     "title": "this is a task",
     "description": "fsfsfdsfdsfdsfds",
-    "column": "to-do-list",
+    "column": "done-list",
     "category": {
       "name": "basic",
       "color": "#3253a8"
@@ -23,7 +23,7 @@
     "id": 1642014189193,
     "title": "fdfdfds  jjijijijijijiji",
     "description": "fsdfsdfdsdfdsfds",
-    "column": "in-progress-list",
+    "column": "done-list",
     "category": {
       "name": "basic",
       "color": "#3253a8"

@@ -22,6 +22,7 @@ class Category {
     ).value
     this.setColor(color)
   }
+  pickCategory = (e) => {}
 
   renderCategory = () => {
     const el = `<div>

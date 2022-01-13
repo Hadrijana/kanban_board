@@ -42,7 +42,7 @@ class Service {
     })
   }
 
-  static moveTaskBetweenColumns = async (id, prop) => {
+  static editProperty = async (id, prop) => {
     fetch('http://localhost:8000/drop/' + id, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
