@@ -6,8 +6,9 @@ import Service from './Service.js'
 document.querySelectorAll('[name="add"]').forEach((btn) => {
   new AddCardButton(btn)
 })
-
-new DroppableColumns()
+document.querySelectorAll('[name="container"]').forEach((column) => {
+  new DroppableColumns(column)
+})
 
 Service.getAllTasks().then((tasks) => {
   for (const element in tasks) {

@@ -1,17 +1,15 @@
 import Service from './Service.js'
 class DroppableColumns {
-  constructor() {
-    this.boxes = document.querySelectorAll('[name="container"]')
+  constructor(column) {
+    this.column = column
     this.addListeners()
   }
 
   addListeners = () => {
-    this.boxes.forEach((box) => {
-      box.addEventListener('dragenter', this.dragEnter)
-      box.addEventListener('dragover', this.dragOver)
-      box.addEventListener('dragleave', this.dragLeave)
-      box.addEventListener('drop', this.drop)
-    })
+    this.column.addEventListener('dragenter', this.dragEnter)
+    this.column.addEventListener('dragover', this.dragOver)
+    this.column.addEventListener('dragleave', this.dragLeave)
+    this.column.addEventListener('drop', this.drop)
   }
 
   dragEnter = (e) => {
