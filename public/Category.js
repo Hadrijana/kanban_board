@@ -8,17 +8,25 @@ class Category {
     this.renderCategory()
   }
 
-  changeColor = (e) => {
-    const color = document.getElementById(`${this.id}-${this.name}-color`).value
-    this.category.color = color
+  setColor = (color) => {
+    document.querySelectorAll(`.${this.name}`).forEach((el) => {
+      el.style.backgroundColor = color
+    })
+    document.querySelectorAll(`.${this.name}>*`).forEach((el) => {
+      el.style.backgroundColor = color
+    })
+  }
+  changeColors = (e) => {
+    const color = document.getElementById(
+      `${this.taskId}-${this.name}-color`
+    ).value
     this.setColor(color)
-    Service.editTask(this.id, JSON.stringify(this))
   }
 
   renderCategory = () => {
     const el = `<div>
                     <input id="${this.taskId}-${this.name}-color" type="color" value="${this.color}"></input>
-                    <button id="${this.id}-${this.name}">${this.name}</Button>
+                    <button id="${this.taskId}-${this.name}">${this.name}</Button>
                 </div>`
 
     const range = document.createRange()
@@ -28,7 +36,10 @@ class Category {
 
     document
       .getElementById(`${this.taskId}-${this.name}-color`)
-      .addEventListener('change', this.changeColor)
+      .addEventListener('change', this.changeColors)
+    document
+      .getElementById(`${this.taskId}-${this.name}`)
+      .addEventListener('click', this.pickCategory)
   }
 }
 

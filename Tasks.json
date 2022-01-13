@@ -35,8 +35,8 @@
     "description": "fdsfsdfdsfsdfdsfdsfsfds",
     "column": "done-list",
     "category": {
-      "name": "basic",
-      "color": "#3253a8"
+      "name": "important",
+      "color": "#a83232"
     }
   }
 }
