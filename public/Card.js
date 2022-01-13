@@ -28,10 +28,25 @@ class Card {
 
   onEdit = (e) => {
     if (e.target.id === `${this.id}-title`) {
-      Service.editTask(this.id, { title: e.target.innerText })
+      this.title = e.target.innerText
     } else if (e.target.id === `${this.id}-description`) {
-      Service.editTask(this.id, { description: e.target.innerText })
+      this.description = e.target.innerText
     }
+    Service.editTask(this.id, JSON.stringify(this))
+  }
+
+  setColor = (color) => {
+    document.querySelector(`[id='${this.id}']`).style.backgroundColor = color
+    document.querySelectorAll(`[id='${this.id}']>*`).forEach((el) => {
+      el.style.backgroundColor = color
+    })
+  }
+
+  changeColor = (e) => {
+    const color = document.getElementById(`${this.id}-color`).value
+    this.color = color
+    this.setColor(color)
+    Service.editTask(this.id, JSON.stringify(this))
   }
 
   renderCard = () => {
@@ -51,7 +66,8 @@ class Card {
                     }-description" contenteditable="true">${
       this.description
     }</div>             
-                    <div id="picker"></div>
+                    <input type="color" id="${this.id}-color" 
+                    value="#e66465">
                     <button class="button" id="delete-btn-${+this
                       .id}" > <i class="fas fa-trash"></i></button>
                 </div>`
@@ -61,12 +77,9 @@ class Card {
     const documentFragment = range.createContextualFragment(el).children[0]
     parent.appendChild(documentFragment)
 
-    // let color = document.createElement("div");
-    // color.setAttribute("id", "picker")
-    // let picker = new Picker(color)
-    // color.appendChild(picker)
-
     document.getElementById(this.id).addEventListener('dragend', this.onDragEnd)
+
+    this.setColor(this.color)
 
     document
       .getElementById(this.id)
@@ -83,6 +96,10 @@ class Card {
     document
       .getElementById(`${this.id}-description`)
       .addEventListener('focusout', this.onEdit)
+
+    document
+      .getElementById(`${this.id}-color`)
+      .addEventListener('change', this.changeColor)
   }
 }
 export default Card
