@@ -6,7 +6,8 @@ class Card {
     this.title = task.title
     this.description = task.description
     this.column = task.column
-    this.color = task.color
+    this.category = task.category
+    this.renderCard()
   }
 
   onDragStart = (e) => {
@@ -42,19 +43,21 @@ class Card {
     })
   }
 
-  changeColor = (e) => {
-    const color = document.getElementById(`${this.id}-color`).value
-    this.color = color
-    this.setColor(color)
-    Service.editTask(this.id, JSON.stringify(this))
+  setColor = (color) => {
+    document.querySelector(`[id='${this.id}']`).style.backgroundColor = color
+    document.querySelectorAll(`[id='${this.id}']>*`).forEach((el) => {
+      el.style.backgroundColor = color
+    })
   }
 
   renderCard = () => {
     const parent = document.getElementById(this.column)
 
-    const el = `<div class="task" id=${this.id} draggable="true"
+    const el = `<div class="task ${this.category.name}" id=${
+      this.id
+    } draggable="true"
                   ondragend="this.onDragEnd" style="background-color:${
-                    this.color
+                    this.category.color
                   }"
                   ondrop="event.stopPropagation()" ondragover="event.stopPropagation()"> 
                     <div name="title" id="${
@@ -66,8 +69,7 @@ class Card {
                     }-description" contenteditable="true">${
       this.description
     }</div>             
-                    <input type="color" id="${this.id}-color" 
-                    value="#e66465">
+                    <div id="${this.id}-category" name="category-picker"></div>
                     <button class="button" id="delete-btn-${+this
                       .id}" > <i class="fas fa-trash"></i></button>
                 </div>`
@@ -79,7 +81,7 @@ class Card {
 
     document.getElementById(this.id).addEventListener('dragend', this.onDragEnd)
 
-    this.setColor(this.color)
+    this.setColor(this.category.color)
 
     document
       .getElementById(this.id)
@@ -96,10 +98,6 @@ class Card {
     document
       .getElementById(`${this.id}-description`)
       .addEventListener('focusout', this.onEdit)
-
-    document
-      .getElementById(`${this.id}-color`)
-      .addEventListener('change', this.changeColor)
   }
 }
 export default Card

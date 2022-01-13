@@ -12,7 +12,10 @@ class AddCardButton {
       description: '',
       id: Date.now(),
       column: `${this.addTaskBtn.parentNode.parentNode.id}-list`,
-      color: '#964f4cff',
+      category: {
+        name: 'basic',
+        color: '#3253a8',
+      },
     })
     //localStorage.setItem(task.id, JSON.stringify(task));
     Service.addTask(task)
