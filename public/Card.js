@@ -1,17 +1,7 @@
 import Service from './Service.js'
 import DropdownButton from './DropdownButton.js'
 import CategoryPicker from './CategoryPicker.js'
-
-let categories = [
-  {
-    name: 'important',
-    color: '#a83232',
-  },
-  {
-    name: 'basic',
-    color: '#3253a8',
-  },
-]
+import { categories } from './Categories.js'
 
 class Card {
   constructor(task) {
@@ -19,8 +9,28 @@ class Card {
     this.title = task.title
     this.description = task.description
     this.column = task.column
-    this.category = task.category
+    this.categoryId = task.categoryId
+
     this.renderCard()
+    this.addListeners()
+  }
+
+  addListeners = () => {
+    document
+      .getElementById(this.id)
+      .addEventListener('dragstart', this.onDragStart)
+
+    document
+      .getElementById(`delete-btn-${+this.id}`)
+      .addEventListener('click', this.onDelete)
+
+    document
+      .getElementById(`${this.id}-title`)
+      .addEventListener('focusout', this.onEdit)
+
+    document
+      .getElementById(`${this.id}-description`)
+      .addEventListener('focusout', this.onEdit)
   }
 
   onDragStart = (e) => {
@@ -46,7 +56,7 @@ class Card {
     } else if (e.target.id === `${this.id}-description`) {
       this.description = e.target.innerText
     }
-    Service.editTask(this.id, JSON.stringify(this))
+    Service.editTask(this.id, this)
   }
 
   setColor = (color) => {
@@ -66,11 +76,11 @@ class Card {
   renderCard = () => {
     const parent = document.getElementById(this.column)
 
-    const el = `<div class="task ${this.category.name}" id=${
+    const el = `<div class="task ${categories[this.categoryId].name}" id=${
       this.id
     } draggable="true"
                   ondragend="this.onDragEnd" style="background-color:${
-                    this.category.color
+                    categories[this.categoryId].color
                   }"
                   ondrop="event.stopPropagation()" ondragover="event.stopPropagation()"> 
                     <div name="title" id="${
@@ -82,9 +92,13 @@ class Card {
                     }-description" contenteditable="true">${
       this.description
     }</div>             
-                    <div id="${this.id}-category" name="category-picker"></div>
-                    <button class="button" id="delete-btn-${+this
-                      .id}" > <i class="fas fa-trash"></i></button>
+                    <div class="btn-container">
+                      <div id="${
+                        this.id
+                      }-category" name="category-picker"></div>
+                      <button class="button" id="delete-btn-${+this
+                        .id}" > <i class="fas fa-trash"></i></button>
+                    </div>
                 </div>`
 
     const range = document.createRange()
@@ -94,23 +108,7 @@ class Card {
 
     document.getElementById(this.id).addEventListener('dragend', this.onDragEnd)
 
-    this.setColor(this.category.color)
-
-    document
-      .getElementById(this.id)
-      .addEventListener('dragstart', this.onDragStart)
-
-    document
-      .getElementById(`delete-btn-${+this.id}`)
-      .addEventListener('click', this.onDelete)
-
-    document
-      .getElementById(`${this.id}-title`)
-      .addEventListener('focusout', this.onEdit)
-
-    document
-      .getElementById(`${this.id}-description`)
-      .addEventListener('focusout', this.onEdit)
+    this.setColor(categories[this.categoryId].color)
 
     new DropdownButton(document.getElementById(`${this.id}-category`))
 

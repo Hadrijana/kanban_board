@@ -31,7 +31,7 @@ class Service {
     fetch('http://localhost:8000/edit/' + id, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: prop,
+      body: JSON.stringify(prop),
     }).then(async (res) => {
       try {
         const data = await res.json()

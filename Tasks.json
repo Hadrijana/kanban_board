@@ -2,41 +2,15 @@
   "1": {
     "id": "1",
     "title": "task 1",
-    "description": "some random taskfdsdfsd",
-    "column": "done-list",
-    "category": {
-      "name": "basic",
-      "color": "#3253a8"
-    }
+    "description": "some random taskfdsdfsdfdssfds",
+    "column": "to-do-list",
+    "categoryId": "0"
   },
-  "1642011736570": {
-    "id": 1642011736570,
-    "title": "this is a task",
-    "description": "fsfsfdsfdsfdsfds",
-    "column": "done-list",
-    "category": {
-      "name": "basic",
-      "color": "#3253a8"
-    }
-  },
-  "1642014189193": {
-    "id": 1642014189193,
-    "title": "fdfdfds  jjijijijijijiji",
-    "description": "fsdfsdfdsdfdsfds",
-    "column": "done-list",
-    "category": {
-      "name": "basic",
-      "color": "#3253a8"
-    }
-  },
-  "1642022111339": {
-    "id": 1642022111339,
-    "title": "adsjdsia ",
-    "description": "fdsfsdfdsfsdfdsfdsfsfds",
-    "column": "done-list",
-    "category": {
-      "name": "important",
-      "color": "#a83232"
-    }
+  "1642170256666": {
+    "id": 1642170256666,
+    "title": "",
+    "description": "",
+    "column": "in-progress-list",
+    "categoryId": "0"
   }
 }

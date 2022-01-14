@@ -58,9 +58,10 @@ router.patch('/drop/:id', (req, res) => {
     tasks[req.params.id].column = req.body.column
       ? req.body.column
       : tasks[req.params.id].column
-    tasks[req.params.id].category = req.body.category
-      ? req.body.category
-      : tasks[req.params.id].category
+
+    tasks[req.params.id].categoryId = req.body.categoryId
+      ? req.body.categoryId
+      : tasks[req.params.id].categoryId
 
     writeToFile()
     res.json(tasks[req.params.id])
