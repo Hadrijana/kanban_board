@@ -1,4 +1,17 @@
 import Service from './Service.js'
+import DropdownButton from './DropdownButton.js'
+import CategoryPicker from './CategoryPicker.js'
+
+let categories = [
+  {
+    name: 'important',
+    color: '#a83232',
+  },
+  {
+    name: 'basic',
+    color: '#3253a8',
+  },
+]
 
 class Card {
   constructor(task) {
@@ -98,6 +111,16 @@ class Card {
     document
       .getElementById(`${this.id}-description`)
       .addEventListener('focusout', this.onEdit)
+
+    new DropdownButton(document.getElementById(`${this.id}-category`))
+
+    categories.forEach((category) => {
+      new CategoryPicker(
+        category.name,
+        category.color,
+        document.getElementById(`${this.id}-category-drop`)
+      )
+    })
   }
 }
 export default Card

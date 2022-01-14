@@ -19,7 +19,6 @@ class AddCardButton {
     })
     //localStorage.setItem(task.id, JSON.stringify(task));
     Service.addTask(task)
-    task.renderCard()
   }
 }
 export default AddCardButton
