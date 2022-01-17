@@ -1,11 +1,11 @@
 import Service from './Service.js'
 import DropdownButton from './DropdownButton.js'
 import CategoryPicker from './CategoryPicker.js'
-import { categories } from './Categories.js'
+import Categories from './Categories.js'
 
 class Card {
   constructor(task) {
-    this.id = task.id
+    this.id = task._id
     this.title = task.title
     this.description = task.description
     this.column = task.column
@@ -21,7 +21,7 @@ class Card {
       .addEventListener('dragstart', this.onDragStart)
 
     document
-      .getElementById(`delete-btn-${+this.id}`)
+      .getElementById(`delete-btn-${this.id}`)
       .addEventListener('click', this.onDelete)
 
     document
@@ -46,6 +46,7 @@ class Card {
 
   onDelete = () => {
     // localStorage.removeItem(this.id);
+
     Service.deleteTask(this.id)
     document.getElementById(this.id).remove()
   }
@@ -74,6 +75,7 @@ class Card {
   }
 
   renderCard = () => {
+    const categories = Categories.getAllCategories()
     const parent = document.getElementById(this.column)
 
     const el = `<div class="task ${categories[this.categoryId].name}" id=${
@@ -96,8 +98,9 @@ class Card {
                       <div id="${
                         this.id
                       }-category" name="category-picker"></div>
-                      <button class="button" id="delete-btn-${+this
-                        .id}" > <i class="fas fa-trash"></i></button>
+                      <button class="button" id="delete-btn-${
+                        this.id
+                      }" > <i class="fas fa-trash"></i></button>
                     </div>
                 </div>`
 

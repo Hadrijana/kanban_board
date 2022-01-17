@@ -10,21 +10,14 @@
     "id": 1642170256666,
     "title": "",
     "description": "",
-    "column": "in-progress-list",
-    "categoryId": "0"
-  },
-  "1642409912910": {
-    "id": 1642409912910,
-    "title": "",
-    "description": "",
     "column": "done-list",
-    "categoryId": "1"
+    "categoryId": "0"
   },
   "1642409945342": {
     "id": 1642409945342,
     "title": "cxzdsas ",
     "description": "ffdadsaddsadsa",
-    "column": "in-progress-list",
+    "column": "to-do-list",
     "categoryId": "1"
   }
 }

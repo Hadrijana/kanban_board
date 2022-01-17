@@ -1,7 +1,10 @@
 import Card from './Card.js'
 import AddCardButton from './AddCardButton.js'
 import DroppableColumns from './DroppableColumns.js'
+import Categories from './Categories.js'
 import Service from './Service.js'
+
+new Categories()
 
 document.querySelectorAll('[name="add"]').forEach((btn) => {
   new AddCardButton(btn)

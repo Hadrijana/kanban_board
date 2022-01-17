@@ -7,15 +7,17 @@ class AddCardButton {
     this.addTaskBtn.addEventListener('click', this.addTask)
   }
   addTask = () => {
-    const task = new Card({
+    const task = {
       title: '',
       description: '',
-      id: Date.now(),
       column: `${this.addTaskBtn.parentNode.parentNode.id}-list`,
       categoryId: '1',
-    })
+    }
     //localStorage.setItem(task.id, JSON.stringify(task));
-    Service.addTask(task)
+    Service.addTask(task).then((id) => {
+      task._id = id
+      new Card(task)
+    })
   }
 }
 export default AddCardButton

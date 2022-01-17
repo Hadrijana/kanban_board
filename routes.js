@@ -1,85 +1,59 @@
 const express = require('express')
 const router = express.Router()
-const tasks = require('./Tasks.json')
-const fs = require('fs')
-
-writeToFile = () => {
-  fs.writeFile('./Tasks.json', JSON.stringify(tasks, null, 2), (err) => {
-    if (err) {
-      console.log('Error writing file', err)
-    } else {
-      console.log('Successfully wrote file')
-    }
-  })
-}
+const taskModel = require('./models/TaskSchema')
 
 // Gets All Members
 router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/index.html'))
 })
 
-router.get('/tasks', (req, res) => res.json(tasks))
+router.get('/tasks', async (req, res) => {
+  const tasks = await taskModel.find({})
 
-router.get('/tasks/:id', (req, res) => {
-  const found = tasks[req.params.id]
+  try {
+    res.json(tasks)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+})
 
+router.get('/tasks/:id', async (req, res) => {
+  const found = await taskModel.find({ id: req.params.id })
   if (found) {
-    res.json(tasks[req.params.id])
+    res.json(found)
   } else {
     res.status(400).json({ msg: 'task not found' })
   }
 })
 
-router.post('/newTask', (req, res) => {
-  const newTask = req.body
-  const id = req.body.id
-  tasks[id] = newTask
-  writeToFile()
-  res.json({ msg: 'new task added' })
-})
-
-router.patch('/edit/:id', (req, res) => {
-  const found = tasks[req.params.id]
-
-  if (found) {
-    const updatedTask = req.body
-    tasks[req.params.id] = updatedTask
-    writeToFile()
-    res.json(req.body)
-  } else {
-    res.status(400).json({ msg: `No member with the id of ${req.params.id}` })
+router.post('/newTask', async (req, res) => {
+  const newTask = new taskModel(req.body)
+  try {
+    await newTask.save()
+    res.send(newTask)
+  } catch (err) {
+    res.status(500).send(err)
   }
 })
 
-router.patch('/drop/:id', (req, res) => {
-  const found = tasks[req.params.id]
-
-  if (found) {
-    tasks[req.params.id].column = req.body.column
-      ? req.body.column
-      : tasks[req.params.id].column
-
-    tasks[req.params.id].categoryId = req.body.categoryId
-      ? req.body.categoryId
-      : tasks[req.params.id].categoryId
-
-    writeToFile()
-    res.json(tasks[req.params.id])
-  } else {
-    res.status(400).json({ msg: `No member with the id of ${req.params.id}` })
+router.patch('/edit/:id', async (req, res) => {
+  try {
+    const task = await taskModel.findByIdAndUpdate(req.params.id, req.body)
+    await task.save()
+    res.send(task)
+  } catch (err) {
+    res.status(500).send(err)
   }
 })
 
-router.delete('/delete/:id', (req, res) => {
-  const found = tasks[req.params.id]
+router.delete('/delete/:id', async (req, res) => {
+  try {
+    const task = await taskModel.findByIdAndRemove(req.params.id)
 
-  if (found) {
-    delete tasks[req.params.id]
-    writeToFile()
-
-    res.json({ msg: 'item deleted' })
-  } else {
-    res.status(400).json({ msg: 'task not found' })
+    if (!task) res.status(404).send('No item found')
+    res.status(200).send()
+  } catch (error) {
+    res.status(500).send(error)
   }
 })
 

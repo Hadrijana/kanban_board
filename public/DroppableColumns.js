@@ -40,7 +40,7 @@ class DroppableColumns {
     // let card = JSON.parse(localStorage[id])
     // card.column = e.target.id;
     // localStorage[id]=JSON.stringify(card)
-    Service.editProperty(id, { column: e.target.id })
+    Service.editTask(id, { column: e.target.id })
   }
 }
 

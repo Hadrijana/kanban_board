@@ -1,5 +1,5 @@
 import Service from './Service.js'
-import { categories } from './Categories.js'
+import Categories from './Categories.js'
 
 class CategoryPicker {
   constructor(name, color, parent) {
@@ -8,6 +8,8 @@ class CategoryPicker {
     this.parent = parent
     this.name = name
     this.color = color
+    this.categories = Categories.getAllCategories()
+
     this.renderCategory()
     this.addListeners()
   }
@@ -37,24 +39,24 @@ class CategoryPicker {
       `${this.taskId}-${this.name}-color`
     ).value
     this.setColor(color)
-    categories.forEach((category) => {
-      if ((category.name = this.name)) {
-        category.color = color
-      }
+    const idx = this.categories.findIndex((el) => {
+      return el.name === this.name
     })
+    localStorage.setItem(idx, JSON.stringify({ name: this.name, color: color }))
+    this.categories = Categories.getAllCategories()
   }
   pickCategory = (e) => {
-    categories.forEach((category) => {
+    this.categories.forEach((category) => {
       document.getElementById(this.taskId).classList.toggle(`${category.name}`)
     })
     document.getElementById(this.taskId).classList.add(`${this.name}`)
     this.setColor(this.color)
 
-    const idx = categories.findIndex((el) => {
+    const idx = this.categories.findIndex((el) => {
       return el.name === this.name
     })
 
-    Service.editProperty(this.taskId, { categoryId: idx.toString() })
+    Service.editTask(this.taskId, { categoryId: idx })
   }
 
   renderCategory = () => {
