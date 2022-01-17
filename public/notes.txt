@@ -1,2 +1,13 @@
 <!-- <script type="module" src="./app.js" ></script> -->
 
+mongodb+srv://Mark_of_sky:<password>@kanbanboard.yk6eo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+
+const { MongoClient } = require('mongodb');
+const uri = "mongodb+srv://Mark_of_sky:<password>@kanbanboard.yk6eo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});

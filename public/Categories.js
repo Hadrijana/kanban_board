@@ -1,4 +1,4 @@
-export let categories = [
+export const categories = [
   {
     name: 'important',
     color: '#a83232',
