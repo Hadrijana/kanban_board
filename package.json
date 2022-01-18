@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npm start",
-    "start": "node index",
-    "dev": "nodemon index"
+    "start": "node ./server/index",
+    "dev": "nodemon ./server/index"
   },
   "author": "Marks",
   "license": "ISC",
