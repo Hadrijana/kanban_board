@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const taskModel = require('./models/TaskSchema')
+const categoryModel = require('./models/CategorySchema')
 
 // Gets All Members
 router.get('/', (req, res) => {

@@ -1,13 +1,22 @@
 <!-- <script type="module" src="./app.js" ></script> -->
 
-mongodb+srv://Mark_of_sky:<password>@kanbanboard.yk6eo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 
+// router.patch('/drop/:id', async (req, res) => {
 
-const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://Mark_of_sky:<password>@kanbanboard.yk6eo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+// const found = tasks[req.params.id]
+
+// if (found) {
+//   tasks[req.params.id].column = req.body.column
+//     ? req.body.column
+//     : tasks[req.params.id].column
+
+//   tasks[req.params.id].categoryId = req.body.categoryId
+//     ? req.body.categoryId
+//     : tasks[req.params.id].categoryId
+
+//   writeToFile()
+//   res.json(tasks[req.params.id])
+// } else {
+//   res.status(400).json({ msg: `No member with the id of ${req.params.id}` })
+// }
+// })

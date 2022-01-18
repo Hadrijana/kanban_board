@@ -1,5 +1,5 @@
-import Service from './Service.js'
-import Categories from './Categories.js'
+import Service from '../Service.js'
+import Categories from '../Categories.js'
 
 class CategoryPicker {
   constructor(name, color, parent) {

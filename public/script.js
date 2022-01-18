@@ -1,6 +1,6 @@
-import Card from './Card.js'
-import AddCardButton from './AddCardButton.js'
-import DroppableColumns from './DroppableColumns.js'
+import Card from './CardComponents/Card.js'
+import AddCardButton from './Layout/AddCardButton.js'
+import DroppableColumns from './Layout/DroppableColumns.js'
 import Categories from './Categories.js'
 import Service from './Service.js'
 

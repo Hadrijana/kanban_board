@@ -1,7 +1,7 @@
-import Service from './Service.js'
+import Service from '../Service.js'
 import DropdownButton from './DropdownButton.js'
 import CategoryPicker from './CategoryPicker.js'
-import Categories from './Categories.js'
+import Categories from '../Categories.js'
 
 class Card {
   constructor(task) {

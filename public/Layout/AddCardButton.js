@@ -1,5 +1,5 @@
-import Card from './Card.js'
-import Service from './Service.js'
+import Card from '../CardComponents/Card.js'
+import Service from '../Service.js'
 
 class AddCardButton {
   constructor(btn) {
