@@ -7,40 +7,49 @@ router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/public/index.html'))
 })
 
-router.get('/tasks', async (req, res) => {
-  const tasks = await taskModel.find({})
-
-  try {
-    res.json(tasks)
-  } catch (error) {
-    res.status(400).send(error)
-  }
+router.get('/tasks', (req, res) => {
+  taskModel.find({}, (err, tasks) => {
+    if (tasks) {
+      res.json(tasks)
+    } else {
+      res.status(400).send(err)
+    }
+  })
 })
 
-router.get('/tasks/:id', async (req, res) => {
-  const found = await taskModel.find({ id: req.params.id })
-  if (found) {
-    res.json(found)
-  } else {
-    res.status(400).json({ msg: 'task not found' })
-  }
+router.get('/tasks/:id', (req, res) => {
+  taskModel.find({ id: req.params.id }, (err, task) => {
+    if (task) {
+      res.json(found)
+    } else {
+      res.status(400).send(err)
+    }
+  })
 })
 
 router.post('/newTask', async (req, res) => {
   const newTask = new taskModel(req.body)
-  try {
-    await newTask.save()
-    res.send(newTask)
-  } catch (err) {
-    res.status(500).send(err)
-  }
+
+  newTask.save((err) => {
+    if (err) return res.status(400).send(err)
+    return res.status(200).json(newTask)
+  })
 })
 
 router.patch('/edit/:id', async (req, res) => {
+  // taskModel.findByIdAndUpdate(
+  //   req.params.id,
+  //   req.body,
+  //   { new: true },
+  //   (err, task) => {
+  //     if (err) return res.status(400).send(err)
+  //     return res.json(task)
+  //   }
+  // )
   try {
     const task = await taskModel.findByIdAndUpdate(req.params.id, req.body)
     await task.save()
-    res.send(task)
+    res.json(task)
   } catch (err) {
     res.status(500).send(err)
   }
