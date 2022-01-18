@@ -27,7 +27,7 @@ router.get('/tasks/:id', (req, res) => {
   })
 })
 
-router.post('/newTask', async (req, res) => {
+router.post('/newTask', (req, res) => {
   const newTask = new taskModel(req.body)
 
   newTask.save((err) => {
@@ -36,34 +36,23 @@ router.post('/newTask', async (req, res) => {
   })
 })
 
-router.patch('/edit/:id', async (req, res) => {
-  // taskModel.findByIdAndUpdate(
-  //   req.params.id,
-  //   req.body,
-  //   { new: true },
-  //   (err, task) => {
-  //     if (err) return res.status(400).send(err)
-  //     return res.json(task)
-  //   }
-  // )
-  try {
-    const task = await taskModel.findByIdAndUpdate(req.params.id, req.body)
-    await task.save()
-    res.json(task)
-  } catch (err) {
-    res.status(500).send(err)
-  }
+router.patch('/edit/:id', (req, res) => {
+  taskModel.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true },
+    (err, task) => {
+      if (err) return res.status(400).send(err)
+      return res.json(task)
+    }
+  )
 })
 
-router.delete('/delete/:id', async (req, res) => {
-  try {
-    const task = await taskModel.findByIdAndRemove(req.params.id)
-
-    if (!task) res.status(404).send('No item found')
-    res.status(200).send()
-  } catch (error) {
-    res.status(500).send(error)
-  }
+router.delete('/delete/:id', (req, res) => {
+  taskModel.findByIdAndRemove(req.params.id, (err, task) => {
+    if (err) return res.status(400).send(err)
+    return res.json(task)
+  })
 })
 
 module.exports = router
