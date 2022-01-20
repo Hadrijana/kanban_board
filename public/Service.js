@@ -1,5 +1,15 @@
 class Service {
   path = 'http://localhost:8000/'
+
+  static getAllCategories = async () => {
+    let allCategories = await fetch([this.path, 'categories'].join('/')).then(
+      (res) => {
+        return res.json()
+      }
+    )
+    return allCategories
+  }
+
   static getAllTasks = async () => {
     let allTasks = await fetch([this.path, 'tasks'].join('/')).then((res) => {
       return res.json()

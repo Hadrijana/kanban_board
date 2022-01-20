@@ -1,9 +1,12 @@
-const express = require('express')
-const app = express()
-const path = require('path')
-require('dotenv').config()
+// export {}
+// const express = require('express')
+import express from 'express'
+import dotenv from 'dotenv'
+import mongoose from 'mongoose'
 
-const mongoose = require('mongoose')
+const app = express()
+dotenv.config()
+
 const connectionString = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@kanbanboard.yk6eo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
 
 mongoose.connect(connectionString, (err) => {
