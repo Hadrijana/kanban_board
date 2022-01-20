@@ -9,10 +9,10 @@ import CategoryModel from "./models/CategoryModel"
 
 // Gets All Members 
 router.get('/', (req : Request, res : Response) => {
-  res.sendFile(path.join(__dirname + '/public/index.html'))
+  res.sendFile(path.join(__dirname + '../', '../','../', 'dist/client/index.html'))
 })
 
-router.get('/categories', (req : express.Request, res : express.Response) => {
+router.get('/categories', (req :Request, res : Response) => {
   CategoryModel.find({}, (err , tasks) => {
     if (tasks) {
       res.json(tasks)
@@ -22,7 +22,19 @@ router.get('/categories', (req : express.Request, res : express.Response) => {
   })
 })
 
-router.get('/tasks', (req : express.Request, res : express.Response) => {
+router.patch('/categories/:id', (req : Request, res : Response) => {
+  CategoryModel.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true },
+    (err, task) => {
+      if (err) return res.status(400).send(err)
+      return res.json(task)
+    }
+  )
+})
+
+router.get('/tasks', (req : Request, res : Response) => {
   TaskModel.find({}, (err , tasks) => {
     if (tasks) {
       res.json(tasks)
@@ -32,7 +44,7 @@ router.get('/tasks', (req : express.Request, res : express.Response) => {
   })
 })
 
-router.get('/tasks/:id', (req : express.Request, res : express.Response) => {
+router.get('/tasks/:id', (req : Request, res : Response) => {
   TaskModel.find({ id: req.params.id }, (err, task) => {
     if (task) {
       res.json(task)
@@ -42,7 +54,7 @@ router.get('/tasks/:id', (req : express.Request, res : express.Response) => {
   })
 })
 
-router.post('/newTask', (req , res ) => {
+router.post('/newTask', (req : Request, res :Response ) => {
   const newTask = new TaskModel(req.body)
 
   newTask.save((err) => {
@@ -51,7 +63,7 @@ router.post('/newTask', (req , res ) => {
   })
 })
 
-router.patch('/edit/:id', (req : express.Request, res : express.Response) => {
+router.patch('/edit/:id', (req : Request, res : Response) => {
   TaskModel.findByIdAndUpdate(
     req.params.id,
     req.body,
@@ -63,7 +75,7 @@ router.patch('/edit/:id', (req : express.Request, res : express.Response) => {
   )
 })
 
-router.delete('/delete/:id', (req : express.Request, res : express.Response) => {
+router.delete('/delete/:id', (req : Request, res :Response) => {
   TaskModel.findByIdAndRemove(req.params.id, null ,(err, task)=>{
     if (err) return res.status(400).send(err)
     return res.json(task)

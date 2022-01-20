@@ -7,10 +7,12 @@ class Categories {
       {
         name: 'important',
         color: '#a83232',
+        _id: ""
       },
       {
         name: 'basic',
         color: '#3253a8',
+        _id: ""
       },
     ]  
 
@@ -23,7 +25,7 @@ class Categories {
   }
 
   static updateCategories =()=>{
-    
+
   }
 
 }

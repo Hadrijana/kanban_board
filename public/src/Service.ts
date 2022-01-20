@@ -12,6 +12,21 @@ class Service {
     return allCategories
   }
 
+  static editCategory = async (id, prop) => {
+    fetch([this.path, 'categories', id].join('/'), {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(prop),
+    }).then(async (res) => {
+      try {
+        const data = await res.json()
+      } catch (error) {
+        console.log('Error happened here!')
+        console.error(error)
+      }
+    })
+  }
+
   static getAllTasks = async () => {
     let allTasks = await fetch([this.path, 'tasks'].join('/')).then((res) => {
       return res.json()

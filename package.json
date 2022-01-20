@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "npm start",
-    "start": "nodemon ./server/dist/index",
+    "start": "nodemon ./dist/index.js",
     "dev": "nodemon ./server/src/index.ts"
   },
   "author": "Marks",

@@ -49,8 +49,10 @@ class CategoryPicker {
       return el.name === this.name
     })
     // localStorage.setItem(idx.toString(), JSON.stringify({ name: this.name, color: color }))
-    
-    this.categories = Categories.categoriesArray
+
+    // this.categories = Categories.categoriesArray
+
+    Service.editCategory(this.categories[idx]._id, {color: this.color})
   }
   pickCategory = (e) => {
     this.categories.forEach((category) => {
