@@ -2,8 +2,15 @@ import Service from '../Service.js'
 import DropdownButton from './DropdownButton.js'
 import CategoryPicker from './CategoryPicker.js'
 import Categories from '../Categories.js'
+import {Category} from 'type'
 
 class Card {
+  id: string;
+  title: string;
+  description: string;
+  column: "to-do-list" | "in-progress-list"| "done-list" 
+  categoryId: number;
+
   constructor(task) {
     this.id = task._id
     this.title = task.title
@@ -45,8 +52,6 @@ class Card {
   }
 
   onDelete = () => {
-    // localStorage.removeItem(this.id);
-
     Service.deleteTask(this.id)
     document.getElementById(this.id).remove()
   }
@@ -61,21 +66,14 @@ class Card {
   }
 
   setColor = (color) => {
-    document.querySelector(`[id='${this.id}']`).style.backgroundColor = color
-    document.querySelectorAll(`[id='${this.id}']>*`).forEach((el) => {
-      el.style.backgroundColor = color
-    })
-  }
-
-  setColor = (color) => {
-    document.querySelector(`[id='${this.id}']`).style.backgroundColor = color
-    document.querySelectorAll(`[id='${this.id}']>*`).forEach((el) => {
+    document.querySelector<HTMLElement>(`[id='${this.id}']`).style.backgroundColor = color
+    document.querySelectorAll<HTMLElement>(`[id='${this.id}']>*`).forEach((el) => {
       el.style.backgroundColor = color
     })
   }
 
   renderCard = () => {
-    const categories = Categories.getAllCategories()
+    const categories: Array<Category> = Categories.categoriesArray
     const parent = document.getElementById(this.column)
 
     const el = `<div class="task ${categories[this.categoryId].name}" id=${

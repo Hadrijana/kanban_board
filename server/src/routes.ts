@@ -1,13 +1,14 @@
 // const express = require('express')
 // const path = require('path')
 import express from 'express'
+import {Request, Response} from 'express'
 import path from "path"
 const router = express.Router()
 import  TaskModel from "./models/TaskModel"
 import CategoryModel from "./models/CategoryModel"
 
 // Gets All Members 
-router.get('/', (req : express.Request, res : express.Response) => {
+router.get('/', (req : Request, res : Response) => {
   res.sendFile(path.join(__dirname + '/public/index.html'))
 })
 
@@ -63,7 +64,7 @@ router.patch('/edit/:id', (req : express.Request, res : express.Response) => {
 })
 
 router.delete('/delete/:id', (req : express.Request, res : express.Response) => {
-  TaskModel.findByIdAndRemove(req.params.id, (err: object, task: object)=>{
+  TaskModel.findByIdAndRemove(req.params.id, null ,(err, task)=>{
     if (err) return res.status(400).send(err)
     return res.json(task)
   })

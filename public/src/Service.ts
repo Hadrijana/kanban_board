@@ -1,5 +1,7 @@
 class Service {
+  static path: string;
   path = 'http://localhost:8000/'
+  
 
   static getAllCategories = async () => {
     let allCategories = await fetch([this.path, 'categories'].join('/')).then(
@@ -49,20 +51,5 @@ class Service {
       }
     })
   }
-
-  // static editTask = async (id, prop) => {
-  //   fetch([this.path, 'drop', id].join('/'), {
-  //     method: 'PATCH',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(prop),
-  //   }).then(async (res) => {
-  //     try {
-  //       const data = await res.json()
-  //     } catch (error) {
-  //       console.log('Error happened here!')
-  //       console.error(error)
-  //     }
-  //   })
-  // }
 }
 export default Service

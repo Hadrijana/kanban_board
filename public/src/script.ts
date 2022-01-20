@@ -4,12 +4,12 @@ import DroppableColumns from './Layout/DroppableColumns.js'
 import Categories from './Categories.js'
 import Service from './Service.js'
 
-new Categories()
+Categories.defineCategories()
 
 document.querySelectorAll('[name="add"]').forEach((btn) => {
   new AddCardButton(btn)
 })
-document.querySelectorAll('[name="container"]').forEach((column) => {
+document.querySelectorAll<HTMLElement>('[name="container"]').forEach((column) => {
   new DroppableColumns(column)
 })
 

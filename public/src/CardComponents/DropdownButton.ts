@@ -1,4 +1,6 @@
 class DropdownButton {
+  parent : HTMLElement
+  id : string
   constructor(parent) {
     this.parent = parent
     this.id = parent.id

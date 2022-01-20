@@ -87,6 +87,7 @@
   .container {
     justify-content: space-around;
     flex-direction: row;
+    min-height: fit-content;
   }
   .task {
     width: 30%;

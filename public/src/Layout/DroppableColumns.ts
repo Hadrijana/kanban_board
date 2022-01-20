@@ -1,6 +1,7 @@
 import Service from '../Service.js'
 class DroppableColumns {
-  constructor(column) {
+  column: HTMLElement
+  constructor(column: HTMLElement) {
     this.column = column
     this.addListeners()
   }
