@@ -1,4 +1,4 @@
-import Task from "Task"
+import {Task,  taskPatch} from "types"
 class Service {
   static path: string;
   path = 'http://localhost:8000/'
@@ -13,7 +13,7 @@ class Service {
     return allCategories
   }
 
-  static editCategory = async (id : string , prop : object) => {
+  static editCategory = async (id : string , prop : {color: string}) => {
     fetch([this.path, 'categories', id].join('/'), {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
@@ -53,7 +53,9 @@ class Service {
     })
   }
 
-  static editTask = async (id : string, prop: object) => {
+  
+
+  static editTask = async (id : string, prop: taskPatch) => {
     fetch([this.path, 'edit', id].join('/'), {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },

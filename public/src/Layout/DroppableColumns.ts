@@ -38,7 +38,7 @@ class DroppableColumns {
 
     draggable.classList.remove('hide')
 
-    Service.editTask(id, { column: (<HTMLElement>e.target).id })
+    Service.editTask(id, {column: (<HTMLElement>e.target).id })
   }
 }
 

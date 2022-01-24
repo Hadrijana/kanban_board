@@ -1,7 +1,7 @@
 import Card from '../CardComponents/Card.js'
 import Service from '../Service.js'
-import {Column} from '../types'
-import Task from '../Task.js'
+import {Column, Task} from '../types'
+
 
 class AddCardButton {
   addTaskBtn: HTMLButtonElement;
@@ -27,16 +27,18 @@ class AddCardButton {
         col= "to-do-list"
         break;
     }
-    const task   = new Task ({
+    
+    const task : Task  ={
       title: '',
       description: '',
       column: col ,
       categoryId: 1,
-    } )
-   
+    }
+
     Service.addTask(task ).then((id) => {
       task._id = id;
       new Card(task)
+      
     })
   }
 }

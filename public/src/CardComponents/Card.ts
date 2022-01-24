@@ -2,14 +2,22 @@ import Service from '../Service.js'
 import DropdownButton from './DropdownButton.js'
 import CategoryPicker from './CategoryPicker.js'
 import Categories from '../Categories.js'
-import {Category} from '../types'
-import Task from '../Task.js'
+import {Category, Column, Task} from '../types'
 
-class Card extends Task {
- 
+
+class Card  {
+    _id?: string ;
+    title: string;
+    description: string;
+    column: Column; 
+    categoryId: number;
 
   constructor(task : Task) {
-    super(task)
+    this._id = task._id
+    this.title = task.title
+    this.description = task.description
+    this.column = task.column
+    this.categoryId = task.categoryId
 
     this.renderCard()
     this.addListeners()
@@ -46,7 +54,7 @@ class Card extends Task {
 
   onDelete = () => {
     Service.deleteTask(<string>this._id);
-    (document.getElementById(<string>this._id)as HTMLElement).remove();
+    document.getElementById(<string>this._id)?.remove();
   }
 
   onEdit = (e : FocusEvent) => {
@@ -67,7 +75,7 @@ class Card extends Task {
 
   renderCard = () => {
     const categories: Array<Category> = Categories.categoriesArray
-    const parent = document.getElementById(this.column)!
+    const parent = document.getElementById(this.column)
 
     const el = `<div class="task ${categories[this.categoryId].name}" id=${
       this._id
@@ -96,9 +104,9 @@ class Card extends Task {
                 </div>`
 
     const range = document.createRange();
-    range.selectNode(parent);
+    range.selectNode(<Node>parent);
     const documentFragment = range.createContextualFragment(el).children[0];
-    parent.appendChild(documentFragment);
+    parent?.appendChild(documentFragment);
 
     (document.getElementById(<string>this._id)as HTMLElement).addEventListener('dragend', this.onDragEnd)
 
