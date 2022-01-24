@@ -1,8 +1,6 @@
 import Service from './Service.js'
-import {Category} from './type'
 class Categories {
-  categoriesArray: Array<Category>;
- 
+
   static categoriesArray = [
       {
         name: 'important',

@@ -2,17 +2,17 @@ import Service from '../Service.js'
 import DropdownButton from './DropdownButton.js'
 import CategoryPicker from './CategoryPicker.js'
 import Categories from '../Categories.js'
-import {Category} from 'type'
+import {Category, Column,  Task} from 'type'
 
 class Card {
-  id: string;
+  id: string ;
   title: string;
   description: string;
-  column: "to-do-list" | "in-progress-list"| "done-list" 
+  column: Column; 
   categoryId: number;
 
-  constructor(task) {
-    this.id = task._id
+  constructor(task : Task) {
+    this.id = <string>task._id
     this.title = task.title
     this.description = task.description
     this.column = task.column
@@ -23,50 +23,50 @@ class Card {
   }
 
   addListeners = () => {
-    document
-      .getElementById(this.id)
-      .addEventListener('dragstart', this.onDragStart)
+    (document
+      .getElementById(this.id) as HTMLElement)
+      .addEventListener('dragstart', this.onDragStart);
 
-    document
-      .getElementById(`delete-btn-${this.id}`)
-      .addEventListener('click', this.onDelete)
+    (document
+      .getElementById(`delete-btn-${this.id}`)as HTMLElement)
+      .addEventListener('click', this.onDelete);
 
-    document
-      .getElementById(`${this.id}-title`)
-      .addEventListener('focusout', this.onEdit)
+    (document
+      .getElementById(`${this.id}-title`)as HTMLElement)
+      .addEventListener('focusout', this.onEdit);
 
-    document
-      .getElementById(`${this.id}-description`)
-      .addEventListener('focusout', this.onEdit)
+    (document
+      .getElementById(`${this.id}-description`)as HTMLElement)
+      .addEventListener('focusout', this.onEdit);
   }
 
-  onDragStart = (e) => {
-    e.dataTransfer.setData('text', e.target.id)
+  onDragStart = (e : DragEvent) => {
+    e.dataTransfer?.setData('text', (<HTMLElement>e.target).id )
     setTimeout(() => {
-      e.target.classList.add('hide')
-    }, 0)
+      (<HTMLElement>e.target).classList.add('hide')
+    }, 0);
   }
 
-  onDragEnd = (e) => {
-    e.target.classList.remove('hide')
+  onDragEnd = (e : DragEvent) => {
+    (<HTMLElement>e.target).classList.remove('hide')
   }
 
   onDelete = () => {
-    Service.deleteTask(this.id)
-    document.getElementById(this.id).remove()
+    Service.deleteTask(this.id);
+    (document.getElementById(this.id)as HTMLElement).remove();
   }
 
-  onEdit = (e) => {
-    if (e.target.id === `${this.id}-title`) {
-      this.title = e.target.innerText
-    } else if (e.target.id === `${this.id}-description`) {
-      this.description = e.target.innerText
+  onEdit = (e : UIEvent) => {
+    if ((<HTMLElement>e.target).id === `${this.id}-title`) {
+      this.title = (<HTMLElement>e.target).innerText
+    } else if ((<HTMLElement>e.target).id === `${this.id}-description`) {
+      this.description = (<HTMLElement>e.target).innerText
     }
     Service.editTask(this.id, this)
   }
 
-  setColor = (color) => {
-    document.querySelector<HTMLElement>(`[id='${this.id}']`).style.backgroundColor = color
+  setColor = (color: string) => {
+    (document.getElementById(`${this.id}`)as HTMLElement).style.backgroundColor = color;
     document.querySelectorAll<HTMLElement>(`[id='${this.id}']>*`).forEach((el) => {
       el.style.backgroundColor = color
     })
@@ -74,7 +74,7 @@ class Card {
 
   renderCard = () => {
     const categories: Array<Category> = Categories.categoriesArray
-    const parent = document.getElementById(this.column)
+    const parent = document.getElementById(this.column)!
 
     const el = `<div class="task ${categories[this.categoryId].name}" id=${
       this.id
@@ -102,22 +102,22 @@ class Card {
                     </div>
                 </div>`
 
-    const range = document.createRange()
-    range.selectNode(parent)
-    const documentFragment = range.createContextualFragment(el).children[0]
-    parent.appendChild(documentFragment)
+    const range = document.createRange();
+    range.selectNode(parent);
+    const documentFragment = range.createContextualFragment(el).children[0];
+    parent.appendChild(documentFragment);
 
-    document.getElementById(this.id).addEventListener('dragend', this.onDragEnd)
+    (document.getElementById(this.id)as HTMLElement).addEventListener('dragend', this.onDragEnd)
 
     this.setColor(categories[this.categoryId].color)
 
-    new DropdownButton(document.getElementById(`${this.id}-category`))
+    new DropdownButton(document.getElementById(`${this.id}-category`)as HTMLElement)
 
     categories.forEach((category) => {
       new CategoryPicker(
         category.name,
         category.color,
-        document.getElementById(`${this.id}-category-drop`)
+        (document.getElementById(`${this.id}-category-drop`)as HTMLElement)
       )
     })
   }

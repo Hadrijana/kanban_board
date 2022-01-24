@@ -2,12 +2,14 @@
   "name": "kanban_board",
   "version": "1.0.0",
   "description": "first intership project",
-  
   "main": "index.js",
   "scripts": {
     "test": "npm start",
-    "start": "nodemon ./dist/index.js",
-    "dev": "nodemon ./server/src/index.ts"
+    "start": "node ./dist/index.js",
+    "build:s": "cd server && tsc",
+    "build:c": "cd public && tsc && cp index.html dist/index.html",
+    "dev": "nodemon --watch public ./server/dist/index.js "
+
   },
   "author": "Marks",
   "license": "ISC",

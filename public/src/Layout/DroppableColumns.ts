@@ -13,35 +13,35 @@ class DroppableColumns {
     this.column.addEventListener('drop', this.drop)
   }
 
-  dragEnter = (e) => {
-    e.preventDefault()
-    e.target.classList.add('drag-over')
+  dragEnter = (e : DragEvent) => {
+    e.preventDefault();
+    (<HTMLElement>e.target).classList.add('drag-over');
   }
 
-  dragOver = (e) => {
-    e.preventDefault()
-    e.dataTransfer.dropEffect = 'copy'
-    e.target.classList.add('drag-over')
+  dragOver = (e: DragEvent) => {
+    e.preventDefault();
+    (<DataTransfer>e.dataTransfer).dropEffect = "move";
+    (e.target as HTMLElement).classList.add('drag-over');
   }
 
-  dragLeave = (e) => {
-    e.target.classList.remove('drag-over')
+  dragLeave = (e: DragEvent) => {
+    (e.target as HTMLElement).classList.remove('drag-over')
   }
 
-  drop = (e) => {
-    e.preventDefault()
+  drop = (e: DragEvent) => {
+    e.preventDefault();
     // e.target.classList.remove('drag-over');
-    const id = e.dataTransfer.getData('text/plain')
-    const draggable = document.getElementById(id)
+    const id  = <string>e.dataTransfer?.getData('text/plain');
+    const draggable = (document.getElementById(id) as HTMLElement);
 
-    e.target.appendChild(draggable)
+    (e.target as HTMLElement).appendChild(draggable)
 
     draggable.classList.remove('hide')
 
     // let card = JSON.parse(localStorage[id])
     // card.column = e.target.id;
     // localStorage[id]=JSON.stringify(card)
-    Service.editTask(id, { column: e.target.id })
+    Service.editTask(id, { column: (<HTMLElement>e.target).id })
   }
 }
 

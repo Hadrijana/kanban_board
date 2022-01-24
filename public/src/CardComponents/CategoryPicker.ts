@@ -8,9 +8,8 @@ class CategoryPicker {
   name: string;
   color: string;
   categories: Array<Category>;
-  constructor(name, color, parent) {
-    this.taskId =
-      parent.parentElement.parentElement.parentElement.parentElement.id
+  constructor(name : string, color: string, parent: HTMLElement) {
+    this.taskId =parent.id.split('-')[0]
     this.parent = parent
     this.name = name
     this.color = color
@@ -21,15 +20,16 @@ class CategoryPicker {
   }
 
   addListeners = () => {
-    document
-      .getElementById(`${this.taskId}-${this.name}-color`)
-      .addEventListener('change', this.changeColors)
-    document
-      .getElementById(`${this.taskId}-${this.name}`)
-      .addEventListener('click', this.pickCategory)
+    (document
+      .getElementById(`${this.taskId}-${this.name}-color`)as HTMLInputElement)
+      .addEventListener('change', this.changeColors);
+
+    (document
+      .getElementById(`${this.taskId}-${this.name}`)as HTMLElement)
+      .addEventListener('click', this.pickCategory);
   }
 
-  setColor = (color) => {
+  setColor = (color : string) => {
     document.querySelectorAll<HTMLElement>(`.${this.name}`).forEach((el) => {
       el.style.backgroundColor = color
     })
@@ -40,7 +40,7 @@ class CategoryPicker {
       el.value = color
     })
   }
-  changeColors = (e) => {
+  changeColors = () => {
     const color = (document.getElementById(
       `${this.taskId}-${this.name}-color`
     )as HTMLInputElement).value
@@ -48,24 +48,20 @@ class CategoryPicker {
     const idx : number= this.categories.findIndex((el) => {
       return el.name === this.name
     })
-    // localStorage.setItem(idx.toString(), JSON.stringify({ name: this.name, color: color }))
-
-    // this.categories = Categories.categoriesArray
-
-    Service.editCategory(this.categories[idx]._id, {color: this.color})
+    Service.editCategory(this.categories[idx]._id, {color: color})
   }
-  pickCategory = (e) => {
+  pickCategory = () => {
     this.categories.forEach((category) => {
-      document.getElementById(this.taskId).classList.toggle(`${category.name}`)
-    })
-    document.getElementById(this.taskId).classList.add(`${this.name}`)
-    this.setColor(this.color)
+      (document.getElementById(this.taskId)as HTMLInputElement).classList.toggle(`${category.name}`)
+    });
+    (document.getElementById(this.taskId)as HTMLInputElement).classList.add(`${this.name}`)
+    this.setColor(this.color);
 
     const idx = this.categories.findIndex((el) => {
       return el.name === this.name
-    })
+    });
 
-    Service.editTask(this.taskId, { categoryId: idx })
+    Service.editTask(this.taskId, { categoryId: idx });
   }
 
   renderCategory = () => {

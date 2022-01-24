@@ -1,13 +1,13 @@
 class DropdownButton {
   parent : HTMLElement
   id : string
-  constructor(parent) {
+  constructor(parent: HTMLElement) {
     this.parent = parent
     this.id = parent.id
     this.renderCategoryPicker()
   }
   dropDown = () => {
-    document.getElementById(`${this.id}-drop`).classList.toggle('show')
+    (document.getElementById(`${this.id}-drop`)as HTMLElement).classList.toggle('show');
   }
 
   renderCategoryPicker = () => {
@@ -18,10 +18,10 @@ class DropdownButton {
             </button>
             <div id="${this.id}-drop" class="dropdown-content">
             </div>
-        </div>`
-    document
-      .querySelector(`[id='${this.id}-dropdown-btn']`)
-      .addEventListener('click', this.dropDown)
+        </div>`;
+    (document
+      .querySelector(`[id='${this.id}-dropdown-btn']`)as HTMLElement)
+      .addEventListener('click', this.dropDown);
   }
 }
 

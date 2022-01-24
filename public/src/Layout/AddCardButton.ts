@@ -1,23 +1,36 @@
 import Card from '../CardComponents/Card.js'
 import Service from '../Service.js'
-import {Task} from '../type'
+import {Task , Column} from '../type'
 
 class AddCardButton {
-  addTaskBtn: HTMLElement
-  constructor(btn) {
-    this.addTaskBtn = btn
+  addTaskBtn: HTMLButtonElement;
+  column: string ;
+  constructor(btn : HTMLButtonElement) {
+    this.addTaskBtn = btn,
+    this.column = `${btn?.parentElement?.parentElement?.id}`,
     this.addTaskBtn.addEventListener('click', this.addTask)
   } 
   addTask = () => {
-    const task  = {
+    let col : Column;
+    switch (this.column) {
+      case ("to-do"):
+        col = "to-do-list";
+      case ( "in-progress"):
+        col = "in-progress-list";
+      case ("done"):
+        col = "done-list";
+      default:
+        col= "to-do-list"
+    }
+    const task   = {
       title: '',
       description: '',
-      column: `${this.addTaskBtn.parentElement.parentElement.id}-list`,
-      categoryId: '1',
-    }
-    //localStorage.setItem(task.id, JSON.stringify(task));
-    Service.addTask(task).then((id) => {
-      (task as any)._id = id;
+      column: col ,
+      categoryId: 1,
+    } 
+   
+    Service.addTask(task ).then((id) => {
+      task._id = id;
       new Card(task)
     })
   }

@@ -1,5 +1,3 @@
-// export {}
-// const express = require('express')
 import express from 'express'
 import path from 'path'
 import dotenv from 'dotenv'
@@ -20,8 +18,10 @@ mongoose.connect(connectionString, (err) => {
 
 app.use(express.json())
 // app.use(express.urlencoded({ extended: false }))
+const p=path.join(__dirname , '../', '../', 'public')
 
-app.use(express.static(path.join(__dirname + '../', '../','../', 'dist/client/')))
+app.use(express.static(p))
+
 
 app.use('/', require('./routes'))
 

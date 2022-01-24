@@ -4,10 +4,12 @@ export interface Category {
     _id : string
 }
 
+export type Column = "to-do-list" | "in-progress-list"| "done-list";
+
 export interface Task {
     title: string,
     description: string,
-    column: string,
-    categoryId: string,
-    _id: string
+    column: Column ,
+    categoryId: number,
+    _id?: string
 }

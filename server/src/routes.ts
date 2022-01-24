@@ -1,5 +1,3 @@
-// const express = require('express')
-// const path = require('path')
 import express from 'express'
 import {Request, Response} from 'express'
 import path from "path"
@@ -9,7 +7,7 @@ import CategoryModel from "./models/CategoryModel"
 
 // Gets All Members 
 router.get('/', (req : Request, res : Response) => {
-  res.sendFile(path.join(__dirname + '../', '../','../', 'dist/client/index.html'))
+  res.sendFile(path.join(__dirname , '../', '../', 'public/dist/index.html'))
 })
 
 router.get('/categories', (req :Request, res : Response) => {

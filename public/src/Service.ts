@@ -1,3 +1,4 @@
+// import { Task } from './type.js'
 class Service {
   static path: string;
   path = 'http://localhost:8000/'
@@ -12,14 +13,14 @@ class Service {
     return allCategories
   }
 
-  static editCategory = async (id, prop) => {
+  static editCategory = async (id : string , prop : object) => {
     fetch([this.path, 'categories', id].join('/'), {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(prop),
     }).then(async (res) => {
       try {
-        const data = await res.json()
+        res.json()
       } catch (error) {
         console.log('Error happened here!')
         console.error(error)
@@ -34,13 +35,13 @@ class Service {
     return allTasks
   }
 
-  static deleteTask = async (id) => {
+  static deleteTask = async (id : string) => {
     fetch([this.path, 'delete', id].join('/'), {
       method: 'DELETE',
     })
   }
 
-  static addTask = (task) => {
+  static addTask = (task: object) => {
     return fetch([this.path, 'newTask'].join('/'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -52,14 +53,14 @@ class Service {
     })
   }
 
-  static editTask = async (id, prop) => {
+  static editTask = async (id : string, prop: object) => {
     fetch([this.path, 'edit', id].join('/'), {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(prop),
     }).then(async (res) => {
       try {
-        const data = await res.json()
+        res.json()
       } catch (error) {
         console.log('Error happened here!')
         console.error(error)
