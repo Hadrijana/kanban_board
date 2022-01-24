@@ -34,13 +34,10 @@ class DroppableColumns {
     const id  = <string>e.dataTransfer?.getData('text/plain');
     const draggable = (document.getElementById(id) as HTMLElement);
 
-    (e.target as HTMLElement).appendChild(draggable)
+    (e.target as Node).appendChild(draggable)
 
     draggable.classList.remove('hide')
 
-    // let card = JSON.parse(localStorage[id])
-    // card.column = e.target.id;
-    // localStorage[id]=JSON.stringify(card)
     Service.editTask(id, { column: (<HTMLElement>e.target).id })
   }
 }

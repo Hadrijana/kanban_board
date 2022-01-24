@@ -1,4 +1,4 @@
-// import { Task } from './type.js'
+import Task from "Task"
 class Service {
   static path: string;
   path = 'http://localhost:8000/'
@@ -41,7 +41,7 @@ class Service {
     })
   }
 
-  static addTask = (task: object) => {
+  static addTask = (task: Task) => {
     return fetch([this.path, 'newTask'].join('/'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

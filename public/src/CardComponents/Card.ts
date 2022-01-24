@@ -2,21 +2,14 @@ import Service from '../Service.js'
 import DropdownButton from './DropdownButton.js'
 import CategoryPicker from './CategoryPicker.js'
 import Categories from '../Categories.js'
-import {Category, Column,  Task} from 'type'
+import {Category} from '../types'
+import Task from '../Task.js'
 
-class Card {
-  id: string ;
-  title: string;
-  description: string;
-  column: Column; 
-  categoryId: number;
+class Card extends Task {
+ 
 
   constructor(task : Task) {
-    this.id = <string>task._id
-    this.title = task.title
-    this.description = task.description
-    this.column = task.column
-    this.categoryId = task.categoryId
+    super(task)
 
     this.renderCard()
     this.addListeners()
@@ -24,19 +17,19 @@ class Card {
 
   addListeners = () => {
     (document
-      .getElementById(this.id) as HTMLElement)
+      .getElementById(<string>this._id) as HTMLElement)
       .addEventListener('dragstart', this.onDragStart);
 
     (document
-      .getElementById(`delete-btn-${this.id}`)as HTMLElement)
+      .getElementById(`delete-btn-${this._id}`)as HTMLElement)
       .addEventListener('click', this.onDelete);
 
     (document
-      .getElementById(`${this.id}-title`)as HTMLElement)
+      .getElementById(`${this._id}-title`)as HTMLElement)
       .addEventListener('focusout', this.onEdit);
 
     (document
-      .getElementById(`${this.id}-description`)as HTMLElement)
+      .getElementById(`${this._id}-description`)as HTMLElement)
       .addEventListener('focusout', this.onEdit);
   }
 
@@ -52,22 +45,22 @@ class Card {
   }
 
   onDelete = () => {
-    Service.deleteTask(this.id);
-    (document.getElementById(this.id)as HTMLElement).remove();
+    Service.deleteTask(<string>this._id);
+    (document.getElementById(<string>this._id)as HTMLElement).remove();
   }
 
-  onEdit = (e : UIEvent) => {
-    if ((<HTMLElement>e.target).id === `${this.id}-title`) {
+  onEdit = (e : FocusEvent) => {
+    if ((<HTMLElement>e.target).id === `${this._id}-title`) {
       this.title = (<HTMLElement>e.target).innerText
-    } else if ((<HTMLElement>e.target).id === `${this.id}-description`) {
+    } else if ((<HTMLElement>e.target).id === `${this._id}-description`) {
       this.description = (<HTMLElement>e.target).innerText
     }
-    Service.editTask(this.id, this)
+    Service.editTask(<string>this._id, this)
   }
 
   setColor = (color: string) => {
-    (document.getElementById(`${this.id}`)as HTMLElement).style.backgroundColor = color;
-    document.querySelectorAll<HTMLElement>(`[id='${this.id}']>*`).forEach((el) => {
+    (document.getElementById(`${this._id}`)as HTMLElement).style.backgroundColor = color;
+    document.querySelectorAll<HTMLElement>(`[id='${this._id}']>*`).forEach((el) => {
       el.style.backgroundColor = color
     })
   }
@@ -77,27 +70,27 @@ class Card {
     const parent = document.getElementById(this.column)!
 
     const el = `<div class="task ${categories[this.categoryId].name}" id=${
-      this.id
+      this._id
     } draggable="true"
                   ondragend="this.onDragEnd" style="background-color:${
                     categories[this.categoryId].color
                   }"
                   ondrop="event.stopPropagation()" ondragover="event.stopPropagation()"> 
                     <div name="title" id="${
-                      this.id
+                      this._id
                     }-title" contenteditable="true" ondrop="event.stopPropagation()" 
                     ondragover="event.stopPropagation()"  >${this.title} </div> 
                     <div name="description" id="${
-                      this.id
+                      this._id
                     }-description" contenteditable="true">${
       this.description
     }</div>             
                     <div class="btn-container">
                       <div id="${
-                        this.id
+                        this._id
                       }-category" name="category-picker"></div>
                       <button class="button" id="delete-btn-${
-                        this.id
+                        this._id
                       }" > <i class="fas fa-trash"></i></button>
                     </div>
                 </div>`
@@ -107,17 +100,17 @@ class Card {
     const documentFragment = range.createContextualFragment(el).children[0];
     parent.appendChild(documentFragment);
 
-    (document.getElementById(this.id)as HTMLElement).addEventListener('dragend', this.onDragEnd)
+    (document.getElementById(<string>this._id)as HTMLElement).addEventListener('dragend', this.onDragEnd)
 
     this.setColor(categories[this.categoryId].color)
 
-    new DropdownButton(document.getElementById(`${this.id}-category`)as HTMLElement)
+    new DropdownButton(document.getElementById(`${this._id}-category`)as HTMLElement)
 
     categories.forEach((category) => {
       new CategoryPicker(
         category.name,
         category.color,
-        (document.getElementById(`${this.id}-category-drop`)as HTMLElement)
+        (document.getElementById(`${this._id}-category-drop`)as HTMLElement)
       )
     })
   }

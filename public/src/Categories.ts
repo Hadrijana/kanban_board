@@ -22,7 +22,9 @@ class Categories {
     })
   }
 
-  static updateCategories =()=>{
+  static updateCategories =(index : number, color : string)=>{
+    Service.editCategory(this.categoriesArray[index]._id, {color: color});
+    this.categoriesArray[index].color= color;
 
   }
 

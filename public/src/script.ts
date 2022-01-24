@@ -3,7 +3,8 @@ import AddCardButton from './Layout/AddCardButton.js'
 import DroppableColumns from './Layout/DroppableColumns.js'
 import Categories from './Categories.js'
 import Service from './Service.js'
-import { Task } from './type.js'
+import Task from './Task.js'
+
 
 Categories.defineCategories()
 document.querySelectorAll<HTMLButtonElement>('[name="add"]').forEach((btn) => {

@@ -1,19 +1,16 @@
 import Service from '../Service.js'
 import Categories from '../Categories.js'
-import {Category} from '../type'
 
 class CategoryPicker {
   taskId: string;
   parent: HTMLElement;
   name: string;
   color: string;
-  categories: Array<Category>;
   constructor(name : string, color: string, parent: HTMLElement) {
     this.taskId =parent.id.split('-')[0]
     this.parent = parent
     this.name = name
     this.color = color
-    this.categories = Categories.categoriesArray
 
     this.renderCategory()
     this.addListeners()
@@ -45,19 +42,20 @@ class CategoryPicker {
       `${this.taskId}-${this.name}-color`
     )as HTMLInputElement).value
     this.setColor(color)
-    const idx : number= this.categories.findIndex((el) => {
+    const idx : number= Categories.categoriesArray.findIndex((el) => {
       return el.name === this.name
     })
-    Service.editCategory(this.categories[idx]._id, {color: color})
+    Categories.updateCategories(idx, color)
+    // Service.editCategory(Categories.categoriesArray[idx]._id, {color: color})
   }
   pickCategory = () => {
-    this.categories.forEach((category) => {
+    Categories.categoriesArray.forEach((category) => {
       (document.getElementById(this.taskId)as HTMLInputElement).classList.toggle(`${category.name}`)
     });
     (document.getElementById(this.taskId)as HTMLInputElement).classList.add(`${this.name}`)
     this.setColor(this.color);
 
-    const idx = this.categories.findIndex((el) => {
+    const idx = Categories.categoriesArray.findIndex((el) => {
       return el.name === this.name
     });
 
