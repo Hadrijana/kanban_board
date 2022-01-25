@@ -6,8 +6,6 @@ export interface Category {
 
 export type Column = "to-do-list" | "in-progress-list"| "done-list";
 
-
-
 export interface Task {
     _id?: string ;
     title: string;
