@@ -1,4 +1,4 @@
-import Service from '../Service.js'
+import Service from '../Service'
 class DroppableColumns {
   column: HTMLElement
   constructor(column: HTMLElement) {
@@ -34,7 +34,7 @@ class DroppableColumns {
     const id  = <string>e.dataTransfer?.getData('text/plain');
     const draggable = (document.getElementById(id) as HTMLElement);
 
-    (e.target as Node).appendChild(draggable)
+    (<HTMLElement>e.target).appendChild(draggable)
 
     draggable.classList.remove('hide')
 

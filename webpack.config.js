@@ -3,12 +3,14 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: './public/src/index.ts',
+  entry: './public/src/script.ts',
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Output Management',
+      template: './public/index.html',
     }),
   ],
+
   devtool: 'source-map',
   module: {
     rules: [
@@ -19,16 +21,17 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
+        include: path.resolve(__dirname, 'public', 'src'),
         exclude: /node_modules/,
       },
     ],
   },
   resolve: {
-    extensions: ['.ts', '.ts', '.js'],
+    extensions: ['.ts', '.js'],
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist', 'client'),
     clean: true,
   },
 }

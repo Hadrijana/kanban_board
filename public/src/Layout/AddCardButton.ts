@@ -1,5 +1,5 @@
-import Card from '../CardComponents/Card.js'
-import Service from '../Service.js'
+import Card from '../CardComponents/Card'
+import Service from '../Service'
 import {Column, Task} from '../types'
 
 

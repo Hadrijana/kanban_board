@@ -1,0 +1,11 @@
+<!-- <script type="module" src="./app.js" ></script> -->
+
+
+{"_id":{"$oid":"61e6d016603b2d1c4669c8e0"},"name":"important","color":"#a83232"}
+{"_id":{"$oid":"61e6d08b603b2d1c4669c8e2"},"name":"basic","color":"#3253a8"}
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Output Management',
+    }),
+  ],

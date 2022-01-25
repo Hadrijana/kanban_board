@@ -1,7 +1,7 @@
-import Service from '../Service.js'
-import DropdownButton from './DropdownButton.js'
-import CategoryPicker from './CategoryPicker.js'
-import Categories from '../Categories.js'
+import Service from '../Service'
+import DropdownButton from './DropdownButton'
+import CategoryPicker from './CategoryPicker'
+import Categories from '../Categories'
 import {Category, Column, Task} from '../types'
 
 

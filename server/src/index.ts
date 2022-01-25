@@ -18,7 +18,7 @@ mongoose.connect(connectionString, (err) => {
 
 app.use(express.json())
 // app.use(express.urlencoded({ extended: false }))
-const p=path.join(__dirname , '../', '../', 'public')
+const p=path.join(__dirname , 'client')
 
 app.use(express.static(p))
 

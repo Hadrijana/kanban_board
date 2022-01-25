@@ -7,7 +7,7 @@ import CategoryModel from "./models/CategoryModel"
 
 // Gets All Members 
 router.get('/', (req : Request, res : Response) => {
-  res.sendFile(path.join(__dirname , '../', '../', 'public/dist/index.html'))
+  res.sendFile(path.join(__dirname ,  'client/index.html'))
 })
 
 router.get('/categories', (req :Request, res : Response) => {
