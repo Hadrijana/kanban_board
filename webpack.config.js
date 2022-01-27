@@ -6,9 +6,13 @@ module.exports = {
   entry: './public/src/script.ts',
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Output Management',
+      title: 'Kanban board',
       template: './public/index.html',
     }),
+    // new HtmlWebpackPlugin({
+    //   title: 'Login page',
+    //   template: './public/index.html',
+    // }),
   ],
 
   devtool: 'source-map',

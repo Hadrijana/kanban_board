@@ -46,7 +46,7 @@ class CategoryPicker {
       return el.name === this.name
     })
     Categories.updateCategories(idx, color)
-    // Service.editCategory(Categories.categoriesArray[idx]._id, {color: color})
+   
   }
   pickCategory = () => {
     Categories.categoriesArray.forEach((category) => {

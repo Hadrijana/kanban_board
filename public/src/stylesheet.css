@@ -57,7 +57,7 @@
   justify-content: flex-start;
 }
 .task * {
-  /* background-color: #964f4cff; */
+  background-color: inherit;
   display: flex;
   width: 92%;
   color: whitesmoke;

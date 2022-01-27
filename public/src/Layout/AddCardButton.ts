@@ -8,7 +8,7 @@ class AddCardButton {
   column: string ;
   constructor(btn : HTMLButtonElement) {
     this.addTaskBtn = btn,
-    this.column = `${btn?.parentElement?.parentElement?.id}`,
+    this.column = `${btn?.parentElement?.parentElement?.id}`
     this.addTaskBtn.addEventListener('click', this.addTask)
   } 
   addTask = () => {
@@ -40,6 +40,7 @@ class AddCardButton {
       new Card(task)
       
     })
+   
   }
 }
 export default AddCardButton

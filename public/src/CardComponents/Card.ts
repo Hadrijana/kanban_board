@@ -2,7 +2,7 @@ import Service from '../Service'
 import DropdownButton from './DropdownButton'
 import CategoryPicker from './CategoryPicker'
 import Categories from '../Categories'
-import {Category, Column, Task} from '../types'
+import {Column, Task} from '../types'
 
 
 class Card  {
@@ -68,20 +68,17 @@ class Card  {
 
   setColor = (color: string) => {
     (document.getElementById(`${this._id}`)as HTMLElement).style.backgroundColor = color;
-    document.querySelectorAll<HTMLElement>(`[id='${this._id}']>*`).forEach((el) => {
-      el.style.backgroundColor = color
-    })
   }
 
   renderCard = () => {
-    const categories: Array<Category> = Categories.categoriesArray
+    // const categories: Array<Category> = Categories.categoriesArray
     const parent = document.getElementById(this.column)
 
-    const el = `<div class="task ${categories[this.categoryId].name}" id=${
+    const el = `<div class="task ${Categories.categoriesArray[this.categoryId].name}" id=${
       this._id
     } draggable="true"
                   ondragend="this.onDragEnd" style="background-color:${
-                    categories[this.categoryId].color
+                    Categories.categoriesArray[this.categoryId].color
                   }"
                   ondrop="event.stopPropagation()" ondragover="event.stopPropagation()"> 
                     <div name="title" id="${
@@ -110,11 +107,11 @@ class Card  {
 
     (document.getElementById(<string>this._id)as HTMLElement).addEventListener('dragend', this.onDragEnd)
 
-    this.setColor(categories[this.categoryId].color)
+    this.setColor(Categories.categoriesArray[this.categoryId].color)
 
     new DropdownButton(document.getElementById(`${this._id}-category`)as HTMLElement)
 
-    categories.forEach((category) => {
+    Categories.categoriesArray.forEach((category) => {
       new CategoryPicker(
         category.name,
         category.color,

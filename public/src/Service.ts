@@ -1,4 +1,4 @@
-import {Task,  taskPatch} from "types"
+import {Task,  taskPatch} from "./types"
 class Service {
   static path: string;
   path = 'http://localhost:8000/'
