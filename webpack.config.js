@@ -3,18 +3,29 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: './public/src/script.ts',
+  entry: {
+    index: './public/src/script.ts',
+    signin: './public/src/signin.ts',
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Kanban board',
       template: './public/index.html',
+      inject: true,
+      chunks: ['index'],
+      filename: 'index.html',
     }),
-    // new HtmlWebpackPlugin({
-    //   title: 'Login page',
-    //   template: './public/index.html',
-    // }),
+    new HtmlWebpackPlugin({
+      title: 'Login page',
+      template: './public/signin.html',
+      inject: true,
+      chunks: ['signin'],
+      filename: 'signin.html',
+    }),
   ],
-
+  devServer: {
+    port: 8000,
+  },
   devtool: 'source-map',
   module: {
     rules: [
@@ -34,7 +45,7 @@ module.exports = {
     extensions: ['.ts', '.js'],
   },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist', 'client'),
     clean: true,
   },

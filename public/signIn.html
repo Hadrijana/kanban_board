@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+  </head>
+  <body>
+    <div class="tab">
+      <button class="tablinks" id="in">Sign in</button>
+      <button class="tablinks" id="up">Sign up</button>
+    </div>
+
+    <div class="tabcontent" id="signin">
+      <h1>Sign in</h1>
+      <form id="loginForm" action="/login" method="post">
+        <section>
+          <label for="username">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            autocomplete="username"
+            required
+            autofocus
+          />
+        </section>
+        <section>
+          <label for="current-password">Password</label>
+          <input
+            id="current-password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+        </section>
+        <button type="submit">Sign in</button>
+      </form>
+    </div>
+
+    <!-- ------------------------------------------------------------------ -->
+    <div class="tabcontent" id="signup">
+      <h1>Sign up</h1>
+      <form id="SingUpForm" action="/register" method="post">
+        <section>
+          <label for="username">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            autocomplete="username"
+            required
+          />
+        </section>
+        <section>
+          <label for="input-password">Password</label>
+          <input id="input-password" name="password" type="password" required />
+        </section>
+        <!-- <section>
+          <label for="repeat-password">Password</label>
+          <input
+            id="repeat-password"
+            name="password"
+            type="password"
+            required
+          />
+        </section> -->
+        <button type="submit">Sign in</button>
+      </form>
+    </div>
+  </body>
+</html>
