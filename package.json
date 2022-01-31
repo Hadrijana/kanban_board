@@ -9,7 +9,7 @@
     "build:s": "cd server && tsc",
     "build:c": "cd public && tsc && cp index.html ../dist/client/index.html && cp stylesheet.css ../dist/client/stylesheet.css ",
     "build:w": "webpack",
-    "dev": "nodemon --watch public ./dist/index.js "
+    "dev": "nodemon --watch dist/client ./dist/index.js "
   },
   "author": "Marks",
   "license": "ISC",

@@ -14,7 +14,7 @@ function isLoggedIn(req : Request, res : Response, next:  NextFunction) {
 
 // Gets All Members 
 router.get('/', isLoggedIn , (req : Request, res : Response) => {
-  res.sendFile(path.join(__dirname ,  'client/index.html'))
+  res.sendFile(path.join(__dirname ,  'client/kanban.html'))
 })
 
 router.get('/login', (req : Request, res : Response) => {
@@ -24,7 +24,7 @@ router.get('/login', (req : Request, res : Response) => {
 
 
 router.post("/register", (req : Request, res : Response)=>{
-  console.log( req.body.password[0]);
+  // console.log( req.body.password[0]);
   
   // const passwords = req.body.password;
   // if(passwords[0] !== passwords[1]){
@@ -49,7 +49,7 @@ router.post("/register", (req : Request, res : Response)=>{
 })
 
 
-router.post('/login', passport.authenticate('local'), (req, res) => {
+router.post('/signin', passport.authenticate('local'), (req, res) => {
   res.statusCode = 200;
 
   res.redirect('/');

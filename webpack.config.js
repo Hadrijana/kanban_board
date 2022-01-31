@@ -13,7 +13,7 @@ module.exports = {
       template: './public/index.html',
       inject: true,
       chunks: ['index'],
-      filename: 'index.html',
+      filename: 'kanban.html',
     }),
     new HtmlWebpackPlugin({
       title: 'Login page',

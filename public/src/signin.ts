@@ -1,4 +1,5 @@
 import './form.css'
+import Service from './Service'
 
  
 class SignTab {
@@ -41,3 +42,16 @@ document.querySelectorAll<HTMLButtonElement>(".tablinks").forEach((btn)=>{
     new SignTab(btn)
 })
 
+const signUpHandler =()=>{
+  const formElements = (document.getElementById("SingUpForm")as HTMLFormElement).elements;
+  const username = (formElements[0]as HTMLInputElement).value
+  const password = (formElements[1]as HTMLInputElement).value
+
+  if((formElements[1]as HTMLInputElement).value !== (formElements[2]as HTMLInputElement).value) {
+    return false
+  }
+  Service.register(username, password)
+  return true
+}
+
+document.getElementById("SingUpForm")?.addEventListener("submit", signUpHandler)

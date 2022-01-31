@@ -69,5 +69,20 @@ class Service {
       }
     })
   }
+
+  static register= (username: string, password: string)=>{
+    fetch([this.path, 'register'].join('/'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({username: username, password: password}),
+    }).then(async (res) => {
+      try {
+        res.json()
+      } catch (error) {
+        console.log('Error happened here!')
+        console.error(error)
+      }
+    })
+  }
 }
 export default Service
